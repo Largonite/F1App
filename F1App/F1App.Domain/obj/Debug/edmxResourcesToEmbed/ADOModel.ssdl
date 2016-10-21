@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="F1AppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Pilots">
+    <Key>
+      <PropertyRef Name="PilotId" />
+    </Key>
+    <Property Name="PilotId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PilotFName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PilotLName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PilotNumber" Type="int" Nullable="false" />
+    <Property Name="PilotAbv" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="PilotNationality" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TeamId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teams">
+    <Key>
+      <PropertyRef Name="TeamId" />
+    </Key>
+    <Property Name="TeamId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TeamNationality" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Pilots_Teams">
+    <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+    <End Role="Pilots" Type="Self.Pilots" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="Pilots">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="F1AppModelStoreContainer">
+    <EntitySet Name="Pilots" EntityType="Self.Pilots" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Pilots_Teams" Association="Self.FK_Pilots_Teams">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="Pilots" EntitySet="Pilots" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

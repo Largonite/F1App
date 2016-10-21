@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="F1AppModelStoreContainer" CdmEntityContainer="F1AppEntities">
+    <EntitySetMapping Name="Pilots">
+      <EntityTypeMapping TypeName="F1AppModel.Pilot">
+        <MappingFragment StoreEntitySet="Pilots">
+          <ScalarProperty Name="PilotId" ColumnName="PilotId" />
+          <ScalarProperty Name="PilotFName" ColumnName="PilotFName" />
+          <ScalarProperty Name="PilotLName" ColumnName="PilotLName" />
+          <ScalarProperty Name="PilotNumber" ColumnName="PilotNumber" />
+          <ScalarProperty Name="PilotAbv" ColumnName="PilotAbv" />
+          <ScalarProperty Name="PilotNationality" ColumnName="PilotNationality" />
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teams">
+      <EntityTypeMapping TypeName="F1AppModel.Team">
+        <MappingFragment StoreEntitySet="Teams">
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="TeamNationality" ColumnName="TeamNationality" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

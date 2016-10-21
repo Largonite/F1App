@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="F1AppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Pilot">
+    <Key>
+      <PropertyRef Name="PilotId" />
+    </Key>
+    <Property Name="PilotId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PilotFName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PilotLName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PilotNumber" Type="Int32" Nullable="false" />
+    <Property Name="PilotAbv" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PilotNationality" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TeamId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Team" Relationship="Self.FK_Pilots_Teams" FromRole="Pilots" ToRole="Teams" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="TeamId" />
+    </Key>
+    <Property Name="TeamId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TeamNationality" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Pilots" Relationship="Self.FK_Pilots_Teams" FromRole="Teams" ToRole="Pilots" />
+  </EntityType>
+  <Association Name="FK_Pilots_Teams">
+    <End Role="Teams" Type="Self.Team" Multiplicity="1" />
+    <End Role="Pilots" Type="Self.Pilot" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="Pilots">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="F1AppEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Pilots" EntityType="Self.Pilot" />
+    <EntitySet Name="Teams" EntityType="Self.Team" />
+    <AssociationSet Name="FK_Pilots_Teams" Association="Self.FK_Pilots_Teams">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="Pilots" EntitySet="Pilots" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

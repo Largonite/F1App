@@ -1,0 +1,18 @@
+﻿@using F1App.Domain.Entities
+@model IEnumerable<Pilot>
+
+
+@{
+    ViewBag.Title = "Pilots list";
+}
+
+<h2>Pilots</h2>
+@foreach(var p in Model)
+{
+    <div>
+        <h3>
+            @p.PilotFName @p.PilotLName
+        </h3>
+    </div>
+}
+
