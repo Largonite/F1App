@@ -20,11 +20,5 @@ namespace F1App.WebUI.Controllers
         {
             return View(repository.Pilots);
         }
-
-        // GET: Pilot
-        public ActionResult Index()
-        {
-            return View();
-        }
     }
 }

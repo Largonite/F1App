@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="F1AppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Circuits">
+    <Key>
+      <PropertyRef Name="CircuitId" />
+    </Key>
+    <Property Name="CircuitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CircuitUrl" Type="nvarchar" MaxLength="100" />
+    <Property Name="CircuitName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LocationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationLat" Type="nvarchar" MaxLength="25" />
+    <Property Name="LocationLong" Type="nvarchar" MaxLength="25" />
+    <Property Name="LocationLocality" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LocationCountry" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pilots">
+    <Key>
+      <PropertyRef Name="PilotId" />
+    </Key>
+    <Property Name="PilotId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PilotFName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PilotLName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PilotNumber" Type="int" Nullable="false" />
+    <Property Name="PilotAbv" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="PilotNationality" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="PilotUrl" Type="nvarchar" MaxLength="100" />
+    <Property Name="PilotDOB" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TeamId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PilotStandings">
+    <Key>
+      <PropertyRef Name="StandingId" />
+    </Key>
+    <Property Name="StandingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StandingSeason" Type="int" Nullable="false" />
+    <Property Name="StandingPosition" Type="int" Nullable="false" />
+    <Property Name="StandingPoints" Type="int" Nullable="false" />
+    <Property Name="StandingWins" Type="int" Nullable="false" />
+    <Property Name="PilotId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Races">
+    <Key>
+      <PropertyRef Name="RaceId" />
+    </Key>
+    <Property Name="RaceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RaceSeason" Type="int" Nullable="false" />
+    <Property Name="RaceRound" Type="int" Nullable="false" />
+    <Property Name="RaceUrl" Type="nvarchar" MaxLength="100" />
+    <Property Name="RaceName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CircuitId" Type="int" Nullable="false" />
+    <Property Name="RaceDate" Type="nvarchar" MaxLength="20" />
+    <Property Name="RaceTime" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Results">
+    <Key>
+      <PropertyRef Name="ResultId" />
+    </Key>
+    <Property Name="ResultId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RaceId" Type="int" Nullable="false" />
+    <Property Name="ResultPosition" Type="int" Nullable="false" />
+    <Property Name="ResultPoints" Type="int" Nullable="false" />
+    <Property Name="ResultGrid" Type="int" Nullable="false" />
+    <Property Name="ResultStatus" Type="nvarchar" MaxLength="20" />
+    <Property Name="ResultTime" Type="nvarchar" MaxLength="20" />
+    <Property Name="PilotId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teams">
+    <Key>
+      <PropertyRef Name="TeamId" />
+    </Key>
+    <Property Name="TeamId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TeamNationality" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TeamUrl" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TeamStandings">
+    <Key>
+      <PropertyRef Name="StandingId" />
+    </Key>
+    <Property Name="StandingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StandingSeason" Type="int" Nullable="false" />
+    <Property Name="StandingPosition" Type="int" Nullable="false" />
+    <Property Name="StandingPoints" Type="int" Nullable="false" />
+    <Property Name="StandingWins" Type="int" Nullable="false" />
+    <Property Name="TeamId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Circuits_Location">
+    <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
+    <End Role="Circuits" Type="Self.Circuits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Locations">
+        <PropertyRef Name="LocationId" />
+      </Principal>
+      <Dependent Role="Circuits">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pilots_Teams">
+    <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+    <End Role="Pilots" Type="Self.Pilots" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="Pilots">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PilotStandings_Pilot">
+    <End Role="Pilots" Type="Self.Pilots" Multiplicity="1" />
+    <End Role="PilotStandings" Type="Self.PilotStandings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pilots">
+        <PropertyRef Name="PilotId" />
+      </Principal>
+      <Dependent Role="PilotStandings">
+        <PropertyRef Name="PilotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Races_Circuit">
+    <End Role="Circuits" Type="Self.Circuits" Multiplicity="1" />
+    <End Role="Races" Type="Self.Races" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Circuits">
+        <PropertyRef Name="CircuitId" />
+      </Principal>
+      <Dependent Role="Races">
+        <PropertyRef Name="CircuitId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Pilot">
+    <End Role="Pilots" Type="Self.Pilots" Multiplicity="1" />
+    <End Role="Results" Type="Self.Results" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pilots">
+        <PropertyRef Name="PilotId" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="PilotId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Race">
+    <End Role="Races" Type="Self.Races" Multiplicity="1" />
+    <End Role="Results" Type="Self.Results" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Races">
+        <PropertyRef Name="RaceId" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="RaceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamStandings_Team">
+    <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+    <End Role="TeamStandings" Type="Self.TeamStandings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="TeamId" />
+      </Principal>
+      <Dependent Role="TeamStandings">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="F1AppModelStoreContainer">
+    <EntitySet Name="Circuits" EntityType="Self.Circuits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pilots" EntityType="Self.Pilots" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PilotStandings" EntityType="Self.PilotStandings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Races" EntityType="Self.Races" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TeamStandings" EntityType="Self.TeamStandings" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Circuits_Location" Association="Self.FK_Circuits_Location">
+      <End Role="Locations" EntitySet="Locations" />
+      <End Role="Circuits" EntitySet="Circuits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pilots_Teams" Association="Self.FK_Pilots_Teams">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="Pilots" EntitySet="Pilots" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PilotStandings_Pilot" Association="Self.FK_PilotStandings_Pilot">
+      <End Role="Pilots" EntitySet="Pilots" />
+      <End Role="PilotStandings" EntitySet="PilotStandings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Races_Circuit" Association="Self.FK_Races_Circuit">
+      <End Role="Circuits" EntitySet="Circuits" />
+      <End Role="Races" EntitySet="Races" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Pilot" Association="Self.FK_Results_Pilot">
+      <End Role="Pilots" EntitySet="Pilots" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Race" Association="Self.FK_Results_Race">
+      <End Role="Races" EntitySet="Races" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamStandings_Team" Association="Self.FK_TeamStandings_Team">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="TeamStandings" EntitySet="TeamStandings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

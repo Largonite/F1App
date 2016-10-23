@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace F1App.Domain.Abstract
 {
-    public interface ITeamRepository
+    public interface ITeamRepository 
     {
-        IEnumerable<Team> Teams { get; }
+        IQueryable<Team> Teams { get; }
     }
 }

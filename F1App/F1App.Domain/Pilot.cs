@@ -14,14 +14,27 @@ namespace F1App.Domain
     
     public partial class Pilot
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Pilot()
+        {
+            this.PilotStandings = new HashSet<PilotStanding>();
+            this.Results = new HashSet<Result>();
+        }
+    
         public int PilotId { get; set; }
         public string PilotFName { get; set; }
         public string PilotLName { get; set; }
         public int PilotNumber { get; set; }
         public string PilotAbv { get; set; }
         public string PilotNationality { get; set; }
+        public string PilotUrl { get; set; }
+        public string PilotDOB { get; set; }
         public int TeamId { get; set; }
     
         public virtual Team Team { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PilotStanding> PilotStandings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Result> Results { get; set; }
     }
 }

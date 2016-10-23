@@ -5,7 +5,6 @@ using Ninject;
 using Moq;
 using F1App.Domain.Abstract;
 using F1App.Domain.Concrete;
-using F1App.Domain.Entities;
 using System.Linq;
 using System.Web;
 
@@ -44,6 +43,10 @@ namespace F1App.WebUI.Infrastructure
 
 
             kernel.Bind<IPilotRepository>().To<PilotRepository>();
+            kernel.Bind<ITeamRepository>().To<TeamRepository>();
+            kernel.Bind<ITeamStandingRpository>().To<TeamStandingRepository>();
+            kernel.Bind<IPilotStandingRepository>().To<PilotStandingRepository>();
+            kernel.Bind<IResultRepository>().To<ResultRepository>();
         }
     }
 }

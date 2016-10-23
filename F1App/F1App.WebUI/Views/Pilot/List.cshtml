@@ -1,18 +1,46 @@
-﻿@using F1App.Domain.Entities
-@model IEnumerable<Pilot>
-
+﻿@using F1App.Domain
+@model IQueryable<Pilot>
 
 @{
-    ViewBag.Title = "Pilots list";
+    ViewBag.Title = "Pilots List";
 }
 
-<h2>Pilots</h2>
-@foreach(var p in Model)
-{
-    <div>
-        <h3>
-            @p.PilotFName @p.PilotLName
-        </h3>
+<script>
+    $(".navbar li.active").removeClass("active");
+    $("#PilotLink").addClass("active");
+</script>
+<div id="pilots">
+    <div class="panel panel-default">
+        <div class="panel-heading">Pilots</div>
+        <div class="panel-body">
+            <table id="pilotsTable" class="table table-striped table-bordered dtInit" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Pilot Number</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Nationality</th>
+                        <th>Abreviation</th>
+                        <th>Team (TeamId)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model)
+                    {
+                        <tr>
+                            <td>@p.PilotId</td>
+                            <td>@p.PilotNumber</td>
+                            <td>@p.PilotFName</td>
+                            <td>@p.PilotLName</td>
+                            <td>@p.PilotNationality</td>
+                            <td>@p.PilotAbv</td>
+                            <td>@p.Team.TeamName (@p.Team.TeamId)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-}
+</div>
 

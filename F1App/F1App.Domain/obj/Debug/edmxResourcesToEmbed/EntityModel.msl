@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="F1AppModelStoreContainer" CdmEntityContainer="F1AppEntities1">
+    <EntitySetMapping Name="Circuits">
+      <EntityTypeMapping TypeName="F1AppModel.Circuit">
+        <MappingFragment StoreEntitySet="Circuits">
+          <ScalarProperty Name="CircuitId" ColumnName="CircuitId" />
+          <ScalarProperty Name="CircuitUrl" ColumnName="CircuitUrl" />
+          <ScalarProperty Name="CircuitName" ColumnName="CircuitName" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="F1AppModel.Location">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="LocationLat" ColumnName="LocationLat" />
+          <ScalarProperty Name="LocationLong" ColumnName="LocationLong" />
+          <ScalarProperty Name="LocationLocality" ColumnName="LocationLocality" />
+          <ScalarProperty Name="LocationCountry" ColumnName="LocationCountry" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pilots">
+      <EntityTypeMapping TypeName="F1AppModel.Pilot">
+        <MappingFragment StoreEntitySet="Pilots">
+          <ScalarProperty Name="PilotId" ColumnName="PilotId" />
+          <ScalarProperty Name="PilotFName" ColumnName="PilotFName" />
+          <ScalarProperty Name="PilotLName" ColumnName="PilotLName" />
+          <ScalarProperty Name="PilotNumber" ColumnName="PilotNumber" />
+          <ScalarProperty Name="PilotAbv" ColumnName="PilotAbv" />
+          <ScalarProperty Name="PilotNationality" ColumnName="PilotNationality" />
+          <ScalarProperty Name="PilotUrl" ColumnName="PilotUrl" />
+          <ScalarProperty Name="PilotDOB" ColumnName="PilotDOB" />
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PilotStandings">
+      <EntityTypeMapping TypeName="F1AppModel.PilotStanding">
+        <MappingFragment StoreEntitySet="PilotStandings">
+          <ScalarProperty Name="StandingId" ColumnName="StandingId" />
+          <ScalarProperty Name="StandingSeason" ColumnName="StandingSeason" />
+          <ScalarProperty Name="StandingPosition" ColumnName="StandingPosition" />
+          <ScalarProperty Name="StandingPoints" ColumnName="StandingPoints" />
+          <ScalarProperty Name="StandingWins" ColumnName="StandingWins" />
+          <ScalarProperty Name="PilotId" ColumnName="PilotId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Races">
+      <EntityTypeMapping TypeName="F1AppModel.Race">
+        <MappingFragment StoreEntitySet="Races">
+          <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+          <ScalarProperty Name="RaceSeason" ColumnName="RaceSeason" />
+          <ScalarProperty Name="RaceRound" ColumnName="RaceRound" />
+          <ScalarProperty Name="RaceUrl" ColumnName="RaceUrl" />
+          <ScalarProperty Name="RaceName" ColumnName="RaceName" />
+          <ScalarProperty Name="CircuitId" ColumnName="CircuitId" />
+          <ScalarProperty Name="RaceDate" ColumnName="RaceDate" />
+          <ScalarProperty Name="RaceTime" ColumnName="RaceTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Results">
+      <EntityTypeMapping TypeName="F1AppModel.Result">
+        <MappingFragment StoreEntitySet="Results">
+          <ScalarProperty Name="ResultId" ColumnName="ResultId" />
+          <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+          <ScalarProperty Name="ResultPosition" ColumnName="ResultPosition" />
+          <ScalarProperty Name="ResultPoints" ColumnName="ResultPoints" />
+          <ScalarProperty Name="ResultGrid" ColumnName="ResultGrid" />
+          <ScalarProperty Name="ResultStatus" ColumnName="ResultStatus" />
+          <ScalarProperty Name="ResultTime" ColumnName="ResultTime" />
+          <ScalarProperty Name="PilotId" ColumnName="PilotId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teams">
+      <EntityTypeMapping TypeName="F1AppModel.Team">
+        <MappingFragment StoreEntitySet="Teams">
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="TeamNationality" ColumnName="TeamNationality" />
+          <ScalarProperty Name="TeamUrl" ColumnName="TeamUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamStandings">
+      <EntityTypeMapping TypeName="F1AppModel.TeamStanding">
+        <MappingFragment StoreEntitySet="TeamStandings">
+          <ScalarProperty Name="StandingId" ColumnName="StandingId" />
+          <ScalarProperty Name="StandingSeason" ColumnName="StandingSeason" />
+          <ScalarProperty Name="StandingPosition" ColumnName="StandingPosition" />
+          <ScalarProperty Name="StandingPoints" ColumnName="StandingPoints" />
+          <ScalarProperty Name="StandingWins" ColumnName="StandingWins" />
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

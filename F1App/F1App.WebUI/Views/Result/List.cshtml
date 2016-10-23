@@ -1,0 +1,48 @@
+﻿@using F1App.Domain;
+@model IQueryable<Result>
+
+@{
+    ViewBag.Title = "Results";
+}
+
+<script>
+    $(".navbar li.active").removeClass("active");
+    $("#ResultLink").addClass("active");
+</script>
+<div id="pilots">
+    <div class="panel panel-default">
+        <div class="panel-heading">Pilots</div>
+        <div class="panel-body">
+            <table id="teamStandingTable" class="table table-striped table-bordered dtInit" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Pilot (id)</th>
+                        <th>Race (id)</th>
+                        <th>Position</th>
+                        <th>Points</th>
+                        <th>Grid</th>
+                        <th>Status</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var r in Model)
+                    {
+                        <tr>
+                            <td>@r.ResultId</td>
+                            <td>@r.Pilot.PilotLName (@r.PilotId)</td>
+                            <td>@r.Race.RaceName (@r.RaceId)</td>
+                            <td>@r.ResultPosition</td>
+                            <td>@r.ResultPoints</td>
+                            <td>@r.ResultGrid</td>
+                            <td>@r.ResultStatus</td>
+                            <td>@r.ResultTime</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

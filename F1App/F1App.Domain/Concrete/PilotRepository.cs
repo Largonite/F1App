@@ -9,13 +9,17 @@ namespace F1App.Domain.Concrete
 {
     public class PilotRepository : IPilotRepository
     {
-        private DbContext context = new DbContext();
-
-        public IEnumerable<Pilot> Pilots
+        private F1AppEntities1 context = new F1AppEntities1();
+        public IQueryable<Pilot> Pilots
         {
             get
             {
-                return context.Pilots;
+                return from p in context.Pilots select p;
+            }
+
+            set
+            {
+                throw new NotImplementedException();
             }
         }
     }

@@ -18,13 +18,17 @@ namespace F1App.Domain
         public Team()
         {
             this.Pilots = new HashSet<Pilot>();
+            this.TeamStandings = new HashSet<TeamStanding>();
         }
     
         public int TeamId { get; set; }
         public string TeamName { get; set; }
         public string TeamNationality { get; set; }
+        public string TeamUrl { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pilot> Pilots { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TeamStanding> TeamStandings { get; set; }
     }
 }

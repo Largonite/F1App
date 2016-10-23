@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="F1AppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Circuits">
+          <Key>
+            <PropertyRef Name="CircuitId" />
+          </Key>
+          <Property Name="CircuitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CircuitUrl" Type="nvarchar" MaxLength="100" />
+          <Property Name="CircuitName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LocationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationLat" Type="nvarchar" MaxLength="25" />
+          <Property Name="LocationLong" Type="nvarchar" MaxLength="25" />
+          <Property Name="LocationLocality" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LocationCountry" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pilots">
+          <Key>
+            <PropertyRef Name="PilotId" />
+          </Key>
+          <Property Name="PilotId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PilotFName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PilotLName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PilotNumber" Type="int" Nullable="false" />
+          <Property Name="PilotAbv" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="PilotNationality" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="PilotUrl" Type="nvarchar" MaxLength="100" />
+          <Property Name="PilotDOB" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PilotStandings">
+          <Key>
+            <PropertyRef Name="StandingId" />
+          </Key>
+          <Property Name="StandingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StandingSeason" Type="int" Nullable="false" />
+          <Property Name="StandingPosition" Type="int" Nullable="false" />
+          <Property Name="StandingPoints" Type="int" Nullable="false" />
+          <Property Name="StandingWins" Type="int" Nullable="false" />
+          <Property Name="PilotId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Races">
+          <Key>
+            <PropertyRef Name="RaceId" />
+          </Key>
+          <Property Name="RaceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RaceSeason" Type="int" Nullable="false" />
+          <Property Name="RaceRound" Type="int" Nullable="false" />
+          <Property Name="RaceUrl" Type="nvarchar" MaxLength="100" />
+          <Property Name="RaceName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CircuitId" Type="int" Nullable="false" />
+          <Property Name="RaceDate" Type="nvarchar" MaxLength="20" />
+          <Property Name="RaceTime" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Results">
+          <Key>
+            <PropertyRef Name="ResultId" />
+          </Key>
+          <Property Name="ResultId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RaceId" Type="int" Nullable="false" />
+          <Property Name="ResultPosition" Type="int" Nullable="false" />
+          <Property Name="ResultPoints" Type="int" Nullable="false" />
+          <Property Name="ResultGrid" Type="int" Nullable="false" />
+          <Property Name="ResultStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="ResultTime" Type="nvarchar" MaxLength="20" />
+          <Property Name="PilotId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teams">
+          <Key>
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="TeamId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TeamNationality" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TeamUrl" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TeamStandings">
+          <Key>
+            <PropertyRef Name="StandingId" />
+          </Key>
+          <Property Name="StandingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StandingSeason" Type="int" Nullable="false" />
+          <Property Name="StandingPosition" Type="int" Nullable="false" />
+          <Property Name="StandingPoints" Type="int" Nullable="false" />
+          <Property Name="StandingWins" Type="int" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Circuits_Location">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
+          <End Role="Circuits" Type="Self.Circuits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Circuits">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pilots_Teams">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="Pilots" Type="Self.Pilots" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="Pilots">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PilotStandings_Pilot">
+          <End Role="Pilots" Type="Self.Pilots" Multiplicity="1" />
+          <End Role="PilotStandings" Type="Self.PilotStandings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pilots">
+              <PropertyRef Name="PilotId" />
+            </Principal>
+            <Dependent Role="PilotStandings">
+              <PropertyRef Name="PilotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Races_Circuit">
+          <End Role="Circuits" Type="Self.Circuits" Multiplicity="1" />
+          <End Role="Races" Type="Self.Races" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Circuits">
+              <PropertyRef Name="CircuitId" />
+            </Principal>
+            <Dependent Role="Races">
+              <PropertyRef Name="CircuitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Pilot">
+          <End Role="Pilots" Type="Self.Pilots" Multiplicity="1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pilots">
+              <PropertyRef Name="PilotId" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="PilotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Race">
+          <End Role="Races" Type="Self.Races" Multiplicity="1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Races">
+              <PropertyRef Name="RaceId" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamStandings_Team">
+          <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+          <End Role="TeamStandings" Type="Self.TeamStandings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="TeamStandings">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="F1AppModelStoreContainer">
+          <EntitySet Name="Circuits" EntityType="Self.Circuits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pilots" EntityType="Self.Pilots" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PilotStandings" EntityType="Self.PilotStandings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Races" EntityType="Self.Races" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamStandings" EntityType="Self.TeamStandings" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Circuits_Location" Association="Self.FK_Circuits_Location">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Circuits" EntitySet="Circuits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pilots_Teams" Association="Self.FK_Pilots_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Pilots" EntitySet="Pilots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PilotStandings_Pilot" Association="Self.FK_PilotStandings_Pilot">
+            <End Role="Pilots" EntitySet="Pilots" />
+            <End Role="PilotStandings" EntitySet="PilotStandings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Races_Circuit" Association="Self.FK_Races_Circuit">
+            <End Role="Circuits" EntitySet="Circuits" />
+            <End Role="Races" EntitySet="Races" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Pilot" Association="Self.FK_Results_Pilot">
+            <End Role="Pilots" EntitySet="Pilots" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Race" Association="Self.FK_Results_Race">
+            <End Role="Races" EntitySet="Races" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamStandings_Team" Association="Self.FK_TeamStandings_Team">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="TeamStandings" EntitySet="TeamStandings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="F1AppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Circuit">
+          <Key>
+            <PropertyRef Name="CircuitId" />
+          </Key>
+          <Property Name="CircuitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CircuitUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CircuitName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LocationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Circuits_Location" FromRole="Circuits" ToRole="Locations" />
+          <NavigationProperty Name="Races" Relationship="Self.FK_Races_Circuit" FromRole="Circuits" ToRole="Races" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationLat" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="LocationLong" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="LocationLocality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LocationCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Circuits" Relationship="Self.FK_Circuits_Location" FromRole="Locations" ToRole="Circuits" />
+        </EntityType>
+        <EntityType Name="Pilot">
+          <Key>
+            <PropertyRef Name="PilotId" />
+          </Key>
+          <Property Name="PilotId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PilotFName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PilotLName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PilotNumber" Type="Int32" Nullable="false" />
+          <Property Name="PilotAbv" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PilotNationality" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PilotUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PilotDOB" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_Pilots_Teams" FromRole="Pilots" ToRole="Teams" />
+          <NavigationProperty Name="PilotStandings" Relationship="Self.FK_PilotStandings_Pilot" FromRole="Pilots" ToRole="PilotStandings" />
+          <NavigationProperty Name="Results" Relationship="Self.FK_Results_Pilot" FromRole="Pilots" ToRole="Results" />
+        </EntityType>
+        <EntityType Name="PilotStanding">
+          <Key>
+            <PropertyRef Name="StandingId" />
+          </Key>
+          <Property Name="StandingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StandingSeason" Type="Int32" Nullable="false" />
+          <Property Name="StandingPosition" Type="Int32" Nullable="false" />
+          <Property Name="StandingPoints" Type="Int32" Nullable="false" />
+          <Property Name="StandingWins" Type="Int32" Nullable="false" />
+          <Property Name="PilotId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pilot" Relationship="Self.FK_PilotStandings_Pilot" FromRole="PilotStandings" ToRole="Pilots" />
+        </EntityType>
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="RaceId" />
+          </Key>
+          <Property Name="RaceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RaceSeason" Type="Int32" Nullable="false" />
+          <Property Name="RaceRound" Type="Int32" Nullable="false" />
+          <Property Name="RaceUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RaceName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CircuitId" Type="Int32" Nullable="false" />
+          <Property Name="RaceDate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="RaceTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Circuit" Relationship="Self.FK_Races_Circuit" FromRole="Races" ToRole="Circuits" />
+          <NavigationProperty Name="Results" Relationship="Self.FK_Results_Race" FromRole="Races" ToRole="Results" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="ResultId" />
+          </Key>
+          <Property Name="ResultId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RaceId" Type="Int32" Nullable="false" />
+          <Property Name="ResultPosition" Type="Int32" Nullable="false" />
+          <Property Name="ResultPoints" Type="Int32" Nullable="false" />
+          <Property Name="ResultGrid" Type="Int32" Nullable="false" />
+          <Property Name="ResultStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ResultTime" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PilotId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pilot" Relationship="Self.FK_Results_Pilot" FromRole="Results" ToRole="Pilots" />
+          <NavigationProperty Name="Race" Relationship="Self.FK_Results_Race" FromRole="Results" ToRole="Races" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="TeamId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeamNationality" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeamUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Pilots" Relationship="Self.FK_Pilots_Teams" FromRole="Teams" ToRole="Pilots" />
+          <NavigationProperty Name="TeamStandings" Relationship="Self.FK_TeamStandings_Team" FromRole="Teams" ToRole="TeamStandings" />
+        </EntityType>
+        <EntityType Name="TeamStanding">
+          <Key>
+            <PropertyRef Name="StandingId" />
+          </Key>
+          <Property Name="StandingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StandingSeason" Type="Int32" Nullable="false" />
+          <Property Name="StandingPosition" Type="Int32" Nullable="false" />
+          <Property Name="StandingPoints" Type="Int32" Nullable="false" />
+          <Property Name="StandingWins" Type="Int32" Nullable="false" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Team" Relationship="Self.FK_TeamStandings_Team" FromRole="TeamStandings" ToRole="Teams" />
+        </EntityType>
+        <Association Name="FK_Circuits_Location">
+          <End Role="Locations" Type="Self.Location" Multiplicity="1" />
+          <End Role="Circuits" Type="Self.Circuit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Circuits">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Races_Circuit">
+          <End Role="Circuits" Type="Self.Circuit" Multiplicity="1" />
+          <End Role="Races" Type="Self.Race" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Circuits">
+              <PropertyRef Name="CircuitId" />
+            </Principal>
+            <Dependent Role="Races">
+              <PropertyRef Name="CircuitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pilots_Teams">
+          <End Role="Teams" Type="Self.Team" Multiplicity="1" />
+          <End Role="Pilots" Type="Self.Pilot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="Pilots">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PilotStandings_Pilot">
+          <End Role="Pilots" Type="Self.Pilot" Multiplicity="1" />
+          <End Role="PilotStandings" Type="Self.PilotStanding" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pilots">
+              <PropertyRef Name="PilotId" />
+            </Principal>
+            <Dependent Role="PilotStandings">
+              <PropertyRef Name="PilotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Pilot">
+          <End Role="Pilots" Type="Self.Pilot" Multiplicity="1" />
+          <End Role="Results" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pilots">
+              <PropertyRef Name="PilotId" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="PilotId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Race">
+          <End Role="Races" Type="Self.Race" Multiplicity="1" />
+          <End Role="Results" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Races">
+              <PropertyRef Name="RaceId" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="RaceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamStandings_Team">
+          <End Role="Teams" Type="Self.Team" Multiplicity="1" />
+          <End Role="TeamStandings" Type="Self.TeamStanding" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teams">
+              <PropertyRef Name="TeamId" />
+            </Principal>
+            <Dependent Role="TeamStandings">
+              <PropertyRef Name="TeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="F1AppEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Circuits" EntityType="Self.Circuit" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="Pilots" EntityType="Self.Pilot" />
+          <EntitySet Name="PilotStandings" EntityType="Self.PilotStanding" />
+          <EntitySet Name="Races" EntityType="Self.Race" />
+          <EntitySet Name="Results" EntityType="Self.Result" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="TeamStandings" EntityType="Self.TeamStanding" />
+          <AssociationSet Name="FK_Circuits_Location" Association="Self.FK_Circuits_Location">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Circuits" EntitySet="Circuits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Races_Circuit" Association="Self.FK_Races_Circuit">
+            <End Role="Circuits" EntitySet="Circuits" />
+            <End Role="Races" EntitySet="Races" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pilots_Teams" Association="Self.FK_Pilots_Teams">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="Pilots" EntitySet="Pilots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PilotStandings_Pilot" Association="Self.FK_PilotStandings_Pilot">
+            <End Role="Pilots" EntitySet="Pilots" />
+            <End Role="PilotStandings" EntitySet="PilotStandings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Pilot" Association="Self.FK_Results_Pilot">
+            <End Role="Pilots" EntitySet="Pilots" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Race" Association="Self.FK_Results_Race">
+            <End Role="Races" EntitySet="Races" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamStandings_Team" Association="Self.FK_TeamStandings_Team">
+            <End Role="Teams" EntitySet="Teams" />
+            <End Role="TeamStandings" EntitySet="TeamStandings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="F1AppModelStoreContainer" CdmEntityContainer="F1AppEntities1">
+          <EntitySetMapping Name="Circuits">
+            <EntityTypeMapping TypeName="F1AppModel.Circuit">
+              <MappingFragment StoreEntitySet="Circuits">
+                <ScalarProperty Name="CircuitId" ColumnName="CircuitId" />
+                <ScalarProperty Name="CircuitUrl" ColumnName="CircuitUrl" />
+                <ScalarProperty Name="CircuitName" ColumnName="CircuitName" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="F1AppModel.Location">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="LocationLat" ColumnName="LocationLat" />
+                <ScalarProperty Name="LocationLong" ColumnName="LocationLong" />
+                <ScalarProperty Name="LocationLocality" ColumnName="LocationLocality" />
+                <ScalarProperty Name="LocationCountry" ColumnName="LocationCountry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pilots">
+            <EntityTypeMapping TypeName="F1AppModel.Pilot">
+              <MappingFragment StoreEntitySet="Pilots">
+                <ScalarProperty Name="PilotId" ColumnName="PilotId" />
+                <ScalarProperty Name="PilotFName" ColumnName="PilotFName" />
+                <ScalarProperty Name="PilotLName" ColumnName="PilotLName" />
+                <ScalarProperty Name="PilotNumber" ColumnName="PilotNumber" />
+                <ScalarProperty Name="PilotAbv" ColumnName="PilotAbv" />
+                <ScalarProperty Name="PilotNationality" ColumnName="PilotNationality" />
+                <ScalarProperty Name="PilotUrl" ColumnName="PilotUrl" />
+                <ScalarProperty Name="PilotDOB" ColumnName="PilotDOB" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PilotStandings">
+            <EntityTypeMapping TypeName="F1AppModel.PilotStanding">
+              <MappingFragment StoreEntitySet="PilotStandings">
+                <ScalarProperty Name="StandingId" ColumnName="StandingId" />
+                <ScalarProperty Name="StandingSeason" ColumnName="StandingSeason" />
+                <ScalarProperty Name="StandingPosition" ColumnName="StandingPosition" />
+                <ScalarProperty Name="StandingPoints" ColumnName="StandingPoints" />
+                <ScalarProperty Name="StandingWins" ColumnName="StandingWins" />
+                <ScalarProperty Name="PilotId" ColumnName="PilotId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Races">
+            <EntityTypeMapping TypeName="F1AppModel.Race">
+              <MappingFragment StoreEntitySet="Races">
+                <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+                <ScalarProperty Name="RaceSeason" ColumnName="RaceSeason" />
+                <ScalarProperty Name="RaceRound" ColumnName="RaceRound" />
+                <ScalarProperty Name="RaceUrl" ColumnName="RaceUrl" />
+                <ScalarProperty Name="RaceName" ColumnName="RaceName" />
+                <ScalarProperty Name="CircuitId" ColumnName="CircuitId" />
+                <ScalarProperty Name="RaceDate" ColumnName="RaceDate" />
+                <ScalarProperty Name="RaceTime" ColumnName="RaceTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="F1AppModel.Result">
+              <MappingFragment StoreEntitySet="Results">
+                <ScalarProperty Name="ResultId" ColumnName="ResultId" />
+                <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+                <ScalarProperty Name="ResultPosition" ColumnName="ResultPosition" />
+                <ScalarProperty Name="ResultPoints" ColumnName="ResultPoints" />
+                <ScalarProperty Name="ResultGrid" ColumnName="ResultGrid" />
+                <ScalarProperty Name="ResultStatus" ColumnName="ResultStatus" />
+                <ScalarProperty Name="ResultTime" ColumnName="ResultTime" />
+                <ScalarProperty Name="PilotId" ColumnName="PilotId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="F1AppModel.Team">
+              <MappingFragment StoreEntitySet="Teams">
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+                <ScalarProperty Name="TeamNationality" ColumnName="TeamNationality" />
+                <ScalarProperty Name="TeamUrl" ColumnName="TeamUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamStandings">
+            <EntityTypeMapping TypeName="F1AppModel.TeamStanding">
+              <MappingFragment StoreEntitySet="TeamStandings">
+                <ScalarProperty Name="StandingId" ColumnName="StandingId" />
+                <ScalarProperty Name="StandingSeason" ColumnName="StandingSeason" />
+                <ScalarProperty Name="StandingPosition" ColumnName="StandingPosition" />
+                <ScalarProperty Name="StandingPoints" ColumnName="StandingPoints" />
+                <ScalarProperty Name="StandingWins" ColumnName="StandingWins" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

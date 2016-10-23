@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using F1App.Domain.Abstract;
+using F1App.Domain.Concrete;
 
 namespace F1App.Domain.Concrete
 {
-    class TeamRepository : ITeamRepository
+    public class TeamRepository : ITeamRepository
     {
-        private DbContext context = new DbContext();
-        public IEnumerable<Team> Teams
+        F1AppEntities1 context = new F1AppEntities1();
+        public IQueryable<Team> Teams
         {
             get
             {
-                return context.Teams;
+                return from t in context.Teams select t;
             }
         }
     }
