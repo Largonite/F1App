@@ -12,18 +12,9 @@ namespace F1App.WebUI
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Home", action = "Index" }
-            );
-
-            routes.MapRoute(
-                name: "ClassicRoute",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Pilot", action = "List", id = UrlParameter.Optional }
-            );
+            routes.MapRoute(null,"{controller}",new {action = "List"});
+            routes.MapRoute(null,"{controller}/{action}");
+            routes.MapRoute(null, "", new { controller = "Home", action = "Index" });
         }
-    }
+    } 
 }

@@ -9,11 +9,16 @@
     $(".navbar li.active").removeClass("active");
     $("#PilotLink").addClass("active");
 </script>
-<div id="pilots">
+
+
+<div id="JsonGenerator" class="col-xs-4">
+    @Html.Action("ShowOptions", "PilotJsonOption")
+</div>
+<div id="Pilots" class="col-xs-8">
     <div class="panel panel-default">
         <div class="panel-heading">Pilots</div>
         <div class="panel-body">
-            <table id="pilotsTable" class="table table-striped table-bordered dtInit" cellspacing="0" width="100%">
+            <table id="pilotsTable" class="table table-striped table-bordered dt" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -21,6 +26,7 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Nationality</th>
+                        <th>Birth Date</th>
                         <th>Abreviation</th>
                         <th>Team (TeamId)</th>
                     </tr>
@@ -34,6 +40,7 @@
                             <td>@p.PilotFName</td>
                             <td>@p.PilotLName</td>
                             <td>@p.PilotNationality</td>
+                            <td>@p.PilotDOB</td>
                             <td>@p.PilotAbv</td>
                             <td>@p.Team.TeamName (@p.Team.TeamId)</td>
                         </tr>

@@ -17,22 +17,17 @@
                     @Html.RouteLink("F1App", new { controller = "Home", action = "Index" }, new { @class = "navbar-brand" })
                 </div>
                 <ul class="nav navbar-nav">
-                    <li id ="HomeLink">@Html.RouteLink("Home", new { controller = "Home", action = "Index" })</li>
-                    <li id="PilotLink">@Html.RouteLink("Pilots", new { controller = "Pilot", action = "List" })</li>
-                    <li id="TeamLink">@Html.RouteLink("Teams", new { controller = "Team", action = "List" })</li>
-                    <li id="PilotStandingLink">@Html.RouteLink("Pilots standing", new { controller = "PilotStanding", action = "List" })</li>
-                    <li id="TeamStandingLink">@Html.RouteLink("Teams standing", new { controller = "TeamStanding", action = "List" })</li>
-                    <li id="ResultLink">@Html.RouteLink("Results", new { controller = "Result", action = "List" })</li>
+                    <li id ="HomeLink">@Html.ActionLink("Home", "Index",new {controller="Home"})</li>
+                    <li id="PilotLink">@Html.ActionLink("Pilots", "List",new {controller="Pilot"})</li>
+                    <li id="TeamLink">@Html.ActionLink("Teams","List", new {controller="Team"})</li>
+                    <li id="PilotStandingLink">@Html.ActionLink("Pilots standing","List", new {controller = "PilotStanding" })</li>
+                    <li id="TeamStandingLink">@Html.ActionLink("Teams standing","List", new {controller = "TeamStanding" })</li>
+                    <li id="ResultLink">@Html.ActionLink("Results","List", new {controller = "Result" })</li>
                 </ul>
             </div>
         </div>
         <div class="row">
-            <div id="JsonGenerator" class="col-xs-3">
-                JsonGenerator
-            </div>
-            <div class="col-xs-8">
-                @RenderBody()
-            </div>
+           @RenderBody()
         </div>
     </body>
 </html>

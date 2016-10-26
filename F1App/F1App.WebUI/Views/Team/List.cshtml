@@ -8,28 +8,33 @@
     $("#TeamLink").addClass("active");
 </script>
 
-<div class="panel panel-default">
-    <div class="panel-heading">Teams</div>
-    <div class="panel-body">
-        <table id="teamsTable" class="table table-striped table-bordered dtInit" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Nationality</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var t in Model)
-                {
+<div id="JsonGenerator" class="col-xs-4">
+    @Html.Action("ShowOptions", "TeamJsonOption")
+</div>
+<div id="Teams" class="col-xs-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">Teams</div>
+        <div class="panel-body">
+            <table id="teamsTable" class="table table-striped table-bordered dt" cellspacing="0" width="100%">
+                <thead>
                     <tr>
-                        <td>@t.TeamId</td>
-                        <td>@t.TeamName</td>
-                        <td>@t.TeamNationality</td>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Nationality</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var t in Model)
+                    {
+                        <tr>
+                            <td>@t.TeamId</td>
+                            <td>@t.TeamName</td>
+                            <td>@t.TeamNationality</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

@@ -9,11 +9,15 @@
     $(".navbar li.active").removeClass("active");
     $("#TeamStandingLink").addClass("active");
 </script>
-<div id="pilots">
+
+<div id="JsonGenerator" class="col-xs-4">
+    @Html.Action("ShowOptions", "TeamsStandingJsonOption")
+</div>
+<div id="TeamStanding" class="col-xs-8">
     <div class="panel panel-default">
-        <div class="panel-heading">Pilots</div>
+        <div class="panel-heading">Teams Standing</div>
         <div class="panel-body">
-            <table id="teamStandingTable" class="table table-striped table-bordered dtInit" cellspacing="0" width="100%">
+            <table id="teamStandingTable" class="table table-striped table-bordered dt" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th>Id</th>
