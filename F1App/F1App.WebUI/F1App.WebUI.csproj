@@ -271,6 +271,7 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -372,20 +373,28 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Controllers\PilotJsonOptionController.cs" />
     <Compile Include="Controllers\PilotController.cs" />
     <Compile Include="Controllers\PilotStandingController.cs" />
+    <Compile Include="Controllers\PilotStandingJsonOptionController.cs" />
     <Compile Include="Controllers\ResultController.cs" />
+    <Compile Include="Controllers\ResultJsonOptionController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\TeamJsonOptionController.cs" />
     <Compile Include="Controllers\TeamStandingController.cs" />
+    <Compile Include="Controllers\TeamStandingJsonOptionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\PilotJsonOptionsViewModel.cs" />
+    <Compile Include="Models\PilotStandingJsonOptionsViewModel.cs" />
+    <Compile Include="Models\ResultJsonOptionViewModel.cs" />
     <Compile Include="Models\TeamJsonOptionsViewModel.cs" />
+    <Compile Include="Models\TeamStandingJsonOptionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -402,6 +411,14 @@
     <Content Include="Views\PilotStanding\List.cshtml" />
     <Content Include="Views\PilotJsonOption\ShowOptions.cshtml" />
     <Content Include="Views\TeamJsonOption\ShowOptions.cshtml" />
+    <Content Include="Views\PilotStandingJsonOption\ShowOptions.cshtml" />
+    <Content Include="Views\TeamStandingJsonOption\ShowOptions.cshtml" />
+    <Content Include="Views\ResultJsonOption\ShowOptions.cshtml" />
+    <Content Include="Views\List\PilotList.cshtml" />
+    <Content Include="Views\List\TeamList.cshtml" />
+    <Content Include="Views\List\ResultList.cshtml" />
+    <Content Include="Views\List\PilotStandingList.cshtml" />
+    <Content Include="Views\List\TeamStandingList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -411,6 +428,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\F1App.Domain\F1App.Domain.csproj">

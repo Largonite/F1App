@@ -79,19 +79,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IPilotRepository.cs" />
-    <Compile Include="Abstract\IPilotStandingRepository.cs" />
-    <Compile Include="Abstract\IResultRepository.cs" />
-    <Compile Include="Abstract\ITeamRepository.cs" />
-    <Compile Include="Abstract\ITeamStandingRpository.cs" />
+    <Compile Include="Abstract\IRepository.cs" />
     <Compile Include="Circuit.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Concrete\PilotRepository.cs" />
-    <Compile Include="Concrete\PilotStandingRepository.cs" />
-    <Compile Include="Concrete\ResultRepository.cs" />
-    <Compile Include="Concrete\TeamRepository.cs" />
-    <Compile Include="Concrete\TeamStandingRepository.cs" />
+    <Compile Include="Concrete\BaseRepository.cs" />
     <Compile Include="EntityModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

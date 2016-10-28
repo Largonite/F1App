@@ -1,0 +1,81 @@
+﻿@model F1App.WebUI.Models.ResultJsonOptionViewModel
+
+<div>
+    <div id="resultDiv">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Json Options
+            </div>
+            <div class="panel-body">
+                <div class="form-inline">
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="resultIdDd">
+                            Result Id
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.ResultsId, new SelectList(Model.ResultsId), "All", new { @id = "resultIdDd", @class = "Dd form-control", @column = 0, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="resultRaceNameDd">
+                           Result Race
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.ResultsRaceName, new SelectList(Model.ResultsRaceName), "All", new { @id = "resultRaceNameDd", @class = "Dd form-control", @column = 1, @withId = true })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="resultPilotNameDd">
+                            Result Pilot
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.ResultsPilotName, new SelectList(Model.ResultsPilotName), "All", new { @id = "resultPilotNameDd", @class = "Dd form-control", @column = 2, @withId = true })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="resultPositionDd">
+                            Result Position
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.ResultsPosition, new SelectList(Model.ResultsPosition), "All", new { @id = "resultPositionDd", @class = "Dd form-control", @column = 3, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="resultPointsDd">
+                            Result Points
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.ResultsPoints, new SelectList(Model.ResultsPoints), "All", new { @id = "resultPointsDd", @class = "Dd form-control", @column = 4, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="resultGridDd">
+                            Result Grid
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.ResultsGrid, new SelectList(Model.ResultsGrid), "All", new { @id = "resultGridDd", @class = "Dd form-control", @column = 5, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="resultStatusDd">
+                            Result Status
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.ResultsStatus, new SelectList(Model.ResultsStatus), "All", new { @id = "resultStatusDd", @class = "Dd form-control", @column = 6, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="resultTimeDd">
+                           Result Time
+                        </label>
+                        <div class="col-xs-6">
+                            <select id="resultTimeDd" class="Dd form-control" column="8" withid="false">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

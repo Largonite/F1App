@@ -10,5 +10,6 @@ namespace F1App.WebUI.Models
         public IEnumerable<int> TeamsId { get; set; }
         public IEnumerable<string> TeamsName { get; set; }
         public IEnumerable<string> TeamsNationality { get; set; }
+        public IEnumerable<string> TeamsUrl { get; set; }
     }
 }

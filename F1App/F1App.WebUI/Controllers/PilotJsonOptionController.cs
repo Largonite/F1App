@@ -5,14 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using F1App.WebUI.Models;
 using F1App.Domain.Abstract;
+using F1App.Domain;
 
 namespace F1App.WebUI.Controllers
 {
     public class PilotJsonOptionController : Controller
     {
-        IPilotRepository repository;
+        IRepository<Pilot> repository;
 
-        public PilotJsonOptionController(IPilotRepository repos)
+        public PilotJsonOptionController(IRepository<Pilot> repos)
         {
             this.repository = repos;
         }
@@ -21,14 +22,15 @@ namespace F1App.WebUI.Controllers
         {
             PilotJsonOptionsViewModel model = new PilotJsonOptionsViewModel
             {
-                PilotsId = repository.Pilots.OrderBy(p => p.PilotId).Select(p => p.PilotId),
-                PilotsNb = repository.Pilots.OrderBy(p => p.PilotNumber).Select(p => p.PilotNumber),
-                PilotsFName = repository.Pilots.OrderBy(p => p.PilotFName).Select(p => p.PilotFName).Distinct(),
-                PilotsLName = repository.Pilots.OrderBy(p => p.PilotLName).Select(p => p.PilotLName).Distinct(),
-                PilotsNationality = repository.Pilots.OrderBy(p => p.PilotNationality).Select(p => p.PilotNationality).Distinct(),
-                PilotsDOB = repository.Pilots.OrderBy(p => p.PilotDOB).Select(p => p.PilotDOB).Distinct(),
-                PilotsAbv = repository.Pilots.OrderBy(p => p.PilotAbv).Select(p => p.PilotAbv),
-                PilotsTeam = repository.Pilots.OrderBy(p => p.Team.TeamName).Select(p => p.Team.TeamName).Distinct()
+                PilotsId = repository.All().OrderBy(p => p.PilotId).Select(p=>p.PilotId),
+                PilotsNb = repository.All().OrderBy(p => p.PilotNumber).Select(p => p.PilotNumber),
+                PilotsFName = repository.All().OrderBy(p => p.PilotFName).Select(p => p.PilotFName).Distinct(),
+                PilotsLName = repository.All().OrderBy(p => p.PilotLName).Select(p => p.PilotLName).Distinct(),
+                PilotsNationality = repository.All().OrderBy(p => p.PilotNationality).Select(p => p.PilotNationality).Distinct(),
+                PilotsDOB = repository.All().OrderBy(p => p.PilotDOB).Select(p => p.PilotDOB).Distinct(),
+                PilotsAbv = repository.All().OrderBy(p => p.PilotAbv).Select(p => p.PilotAbv),
+                PilotsTeam = repository.All().OrderBy(p => p.Team.TeamName).Select(p => p.Team.TeamName).Distinct(),
+                PilotsUrl = repository.All().OrderBy(p=>p.PilotId).Select(p=>p.PilotUrl)
             };
             return PartialView(model);
         }

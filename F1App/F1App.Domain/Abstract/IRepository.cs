@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace F1App.Domain.Abstract
 {
-    public interface IPilotRepository
+    public interface IRepository<T>
     {
-        IQueryable<Pilot> Pilots { get; set; }
+        IQueryable<T> All();
+        IQueryable<T> SearchFor(Expression<Func<T, bool>> predicate);
     }
 }

@@ -11,10 +11,10 @@
 </script>
 
 
-<div id="JsonGenerator" class="col-xs-4">
+<div id="JsonGenerator">
     @Html.Action("ShowOptions", "PilotJsonOption")
 </div>
-<div id="Pilots" class="col-xs-8">
+<div id="Pilots">
     <div class="panel panel-default">
         <div class="panel-heading">Pilots</div>
         <div class="panel-body">
@@ -29,6 +29,7 @@
                         <th>Birth Date</th>
                         <th>Abreviation</th>
                         <th>Team (TeamId)</th>
+                        <th>Wikipedia</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,6 +44,7 @@
                             <td>@p.PilotDOB</td>
                             <td>@p.PilotAbv</td>
                             <td>@p.Team.TeamName (@p.Team.TeamId)</td>
+                            <td>@p.PilotUrl</td>
                         </tr>
                     }
                 </tbody>

@@ -4,21 +4,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using F1App.Domain.Abstract;
+using F1App.Domain;
 
 namespace F1App.WebUI.Controllers
 {
     public class ResultController : Controller
     {
-        private IResultRepository repository;
+        private IRepository<Result> resultRepository;
 
-        public ResultController(IResultRepository repos)
+        public ResultController(IRepository<Result> repos)
         {
-            this.repository = repos;
+            this.resultRepository = repos;
         }
 
         public ViewResult List()
         {
-            return View(repository.Results);
+            return View(resultRepository.All());
         }
         // GET: Result
         public ActionResult Index()

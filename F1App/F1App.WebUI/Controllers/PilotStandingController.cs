@@ -4,21 +4,22 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using F1App.Domain.Abstract;
+using F1App.Domain;
 
 namespace F1App.WebUI.Controllers
 {
     public class PilotStandingController : Controller
     {
-        private IPilotStandingRepository repository;
+        private IRepository<PilotStanding> repository;
 
-        public PilotStandingController(IPilotStandingRepository repos)
+        public PilotStandingController(IRepository<PilotStanding> repos)
         {
             this.repository = repos;
         }
 
         public ViewResult List()
         {
-            return View(repository.PilotStandigs);
+            return View(repository.All());
         }
 
         // GET: PilotStanding

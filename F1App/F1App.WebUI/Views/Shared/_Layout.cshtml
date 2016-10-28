@@ -18,15 +18,15 @@
                 </div>
                 <ul class="nav navbar-nav">
                     <li id ="HomeLink">@Html.ActionLink("Home", "Index",new {controller="Home"})</li>
-                    <li id="PilotLink">@Html.ActionLink("Pilots", "List",new {controller="Pilot"})</li>
-                    <li id="TeamLink">@Html.ActionLink("Teams","List", new {controller="Team"})</li>
-                    <li id="PilotStandingLink">@Html.ActionLink("Pilots standing","List", new {controller = "PilotStanding" })</li>
-                    <li id="TeamStandingLink">@Html.ActionLink("Teams standing","List", new {controller = "TeamStanding" })</li>
-                    <li id="ResultLink">@Html.ActionLink("Results","List", new {controller = "Result" })</li>
+                    <li id="PilotLink">@Html.ActionLink("Pilots", "PilotList",new {controller="List"})</li>
+                    <li id="TeamLink">@Html.ActionLink("Teams","TeamList", new {controller="List"})</li>
+                    <li id="PilotStandingLink">@Html.ActionLink("Pilots standing","PilotStandingList", new {controller = "List" })</li>
+                    <li id="TeamStandingLink">@Html.ActionLink("Teams standing","TeamStandingList", new {controller = "List" })</li>
+                    <li id="ResultLink">@Html.ActionLink("Results","ResultList", new {controller = "List" })</li>
                 </ul>
             </div>
         </div>
-        <div class="row">
+        <div class="container-fluid">
            @RenderBody()
         </div>
     </body>

@@ -1,22 +1,88 @@
 ﻿@model F1App.WebUI.Models.PilotJsonOptionsViewModel
-<body>
-    <div>
-        <div id="pilotDiv">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Json Options
-                </div>
-                <div class="panel-body">
-                    Select Pilot Id : @Html.DropDownListFor(m => m.PilotsId, new SelectList(Model.PilotsId),"All", new { @id = "pilotIdDd", @class="Dd", @column=0,@withId=false}) <br />
-                    Select Pilot Number :@Html.DropDownListFor(m => m.PilotsNb, new SelectList(Model.PilotsNb), "All", new { @id = "pilotNbDd", @class = "Dd", @column = 1,@withId=false }) <br />
-                    Select Pilot First Name : @Html.DropDownListFor(m => m.PilotsFName, new SelectList(Model.PilotsFName), "All", new { @id = "pilotFNameDd", @class = "Dd", @column = 2, @withId = false }) <br />
-                    Select Pilot Last Name : @Html.DropDownListFor(m => m.PilotsLName, new SelectList(Model.PilotsLName),"All", new { @id = "pilotLNameDd", @class = "Dd", @column = 3, @withId = false }) <br />
-                    Select Pilot Nationality : @Html.DropDownListFor(m => m.PilotsNationality, new SelectList(Model.PilotsNationality),"All", new { @id = "pilotNatDd", @class = "Dd", @column = 4, @withId = false })<br />
-                    Select Pilot Brith Date : @Html.DropDownListFor(m => m.PilotsDOB, new SelectList(Model.PilotsDOB), "All", new { @id = "pilotDOBDd", @class = "Dd", @column = 5, @withId = false })<br />
-                    Select Pilot Abreviation :@Html.DropDownListFor(m => m.PilotsAbv, new SelectList(Model.PilotsAbv), "All", new { @id = "pilotAbvDd", @class = "Dd", @column = 6, @withId = false }) <br />
-                    Select Pilot Team :@Html.DropDownListFor(m => m.PilotsTeam, new SelectList(Model.PilotsTeam), "All", new { @id = "pilotTeamDd", @class = "Dd", @column = 7, @withId = true }) <br />
+<div>
+    <div id="pilotDiv">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Json Options
+            </div>
+            <div class="panel-body">
+                <div class="form-inline">
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotIdDd">
+                            Pilot Id
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotsId, new SelectList(Model.PilotsId), "All", new { @id = "pilotIdDd", @class = "Dd form-control", @column = 0, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotNbDd">
+                            Pilot Number
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotsNb, new SelectList(Model.PilotsNb), "All", new { @id = "pilotNbDd", @class = "Dd form-control", @column = 1, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotFNameDd">
+                            Pilot First Name
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotsFName, new SelectList(Model.PilotsFName), "All", new { @id = "pilotFNameDd", @class = "Dd form-control", @column = 2, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotLNameDd">
+                            Pilot Last Name
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotsLName, new SelectList(Model.PilotsLName), "All", new { @id = "pilotLNameDd", @class = "Dd form-control", @column = 3, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotNatDd">
+                            Pilot Nationality
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotsNationality, new SelectList(Model.PilotsNationality), "All", new { @id = "pilotNatDd", @class = "Dd form-control", @column = 4, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotDOBDd">
+                            Pilot Birth Date
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotsDOB, new SelectList(Model.PilotsDOB), "All", new { @id = "pilotDOBDd", @class = "Dd form-control", @column = 5, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotAbvDd">
+                            Pilot Abreviation
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotsAbv, new SelectList(Model.PilotsAbv), "All", new { @id = "pilotAbvDd", @class = "Dd form-control", @column = 6, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotTeamDd">
+                            Pilot Team
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotsTeam, new SelectList(Model.PilotsTeam), "All", new { @id = "pilotTeamDd", @class = "Dd form-control", @column = 7, @withId = true })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotUrlDd">
+                            Pilot Url
+                        </label>
+                        <div class="col-xs-6">
+                            <select id="pilotUrlId" class="Dd form-control" column="8" withid="false">
+                                <option value="">All</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
+</div>
