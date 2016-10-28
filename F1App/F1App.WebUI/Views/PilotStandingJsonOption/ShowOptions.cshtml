@@ -1,0 +1,63 @@
+﻿@model F1App.WebUI.Models.PilotStandingJsonOptionsViewModel
+<div>
+    <div id="pilotStandingDiv">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Json Options
+            </div>
+            <div class="panel-body">
+                <div class="form-inline">
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotStIdDd">
+                            Standing Id
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotStId, new SelectList(Model.PilotStId), "All", new { @id = "pilotStIdDd", @class = "Dd form-control", @column = 0, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotStSeason">
+                            Standing Season
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotStSeason, new SelectList(Model.PilotStSeason), "All", new { @id = "pilotStSeason", @class = "Dd form-control", @column = 1, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotStPositionDd">
+                            Standing Position
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotStPosition, new SelectList(Model.PilotStPosition), "All", new { @id = "pilotStPositionDd", @class = "Dd form-control", @column = 2, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotStPilotNameDd">
+                            Standing Pilot Name
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotStPilotName, new SelectList(Model.PilotStPilotName), "All", new { @id = "pilotStPilotNameDd", @class = "Dd form-control", @column = 3, @withId = true })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotStPointsDd">
+                            Standing Points
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotStPoints, new SelectList(Model.PilotStPoints), "All", new { @id = "pilotStPointsDd", @class = "Dd form-control", @column = 4, @withId = false })
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3">
+                        <label class="control-label col-xs-6" for="pilotStWinsDd">
+                            Standing Wins
+                        </label>
+                        <div class="col-xs-6">
+                            @Html.DropDownListFor(m => m.PilotStWins, new SelectList(Model.PilotStWins), "All", new { @id = "pilotStWinsDd", @class = "Dd form-control", @column = 5, @withId = false })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
