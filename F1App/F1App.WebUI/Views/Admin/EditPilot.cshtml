@@ -1,0 +1,35 @@
+﻿@model F1App.Domain.Pilot
+
+@{
+    ViewBag.Title = "Admin : Edit " + @Model.PilotFName + " " + @Model.PilotLName;
+}
+
+<!DOCTYPE html>
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Edit @Model.PilotFName @Model.PilotLName</h3>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(p => p.PilotId)
+            @foreach(var property in ViewData.ModelMetadata.Properties)
+            {
+                if (property.PropertyName != "PilotId")
+                {
+                    <div class="form-group">
+                        <label>
+                            @(property.DisplayName ?? property.PropertyName)
+                    </label>
+                    @Html.TextBox(property.PropertyName, null,new { @class = "form-control" })
+                    </div>
+                }
+            }
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Cancel and return to List", "PilotList", null,new{@class = "btn btn-default"})
+        </div>
+     }
+</div>

@@ -11,5 +11,8 @@ namespace F1App.Domain.Abstract
     {
         IQueryable<T> All();
         IQueryable<T> SearchFor(Expression<Func<T, bool>> predicate);
+        T GetById(int id);
+        bool Update(int id,T entity);
+        T Delete(int id);
     }
 }

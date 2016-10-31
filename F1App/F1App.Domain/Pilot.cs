@@ -11,6 +11,8 @@ namespace F1App.Domain
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
     
     public partial class Pilot
     {
@@ -22,13 +24,23 @@ namespace F1App.Domain
         }
     
         public int PilotId { get; set; }
+        [Required (ErrorMessage ="Enter pilot first name")]
         public string PilotFName { get; set; }
+        [Required(ErrorMessage = "Enter pilot last name")]
         public string PilotLName { get; set; }
+        [Required(ErrorMessage = "Enter pilot number")]
+        [Range(0, int.MaxValue, ErrorMessage = "{0} must be a integer")]
         public int PilotNumber { get; set; }
+        [Required(ErrorMessage = "Enter pilot abreviation")]
         public string PilotAbv { get; set; }
+        [Required(ErrorMessage = "Enter pilot nationality")]
         public string PilotNationality { get; set; }
+        [Required(ErrorMessage = "Enter pilot url")]
         public string PilotUrl { get; set; }
+        [Required(ErrorMessage = "Enter pilot date of birth")]
         public string PilotDOB { get; set; }
+        [Required(ErrorMessage = "Enter pilot team's id")]
+        [Range(0, int.MaxValue, ErrorMessage = "{0} must be a integer")]
         public int TeamId { get; set; }
     
         public virtual Team Team { get; set; }

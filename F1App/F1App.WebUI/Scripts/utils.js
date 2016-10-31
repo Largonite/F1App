@@ -31,4 +31,53 @@
     });
 
     $(".Dd").css("width", "100%");
+
+    $(".edit").on("click", function () {
+        var tr = $(this).closest("tr");
+        var td = $(this).closest("td");
+        $(td).find("button").each(function () {
+            if ($(this).hasClass("hidden")) {
+                $(this).removeClass("hidden");
+            } else {
+                $(this).addClass("hidden");
+            }
+        })
+
+
+        $(tr).children().each(function () {
+            var temp = this.innerHTML;
+            if (!$(this).hasClass("crud")) {
+                this.innerHTML = '<div class="form-group"><input name="' + $(this).attr("name") + '" class="form-control" type="text" value="' + temp + '" size=' + temp.length + '></input></div>'
+            }
+        });
+    });
+
+    $(".cancel").on("click", function () {
+        var tr = $(this).closest("tr");
+        var td = $(this).closest("td");
+        $(td).find("button").each(function () {
+            if ($(this).hasClass("hidden")) {
+                $(this).removeClass("hidden");
+            } else {
+                $(this).addClass("hidden");
+            }
+        })
+
+
+        $(tr).children().each(function () {
+            var input = $(this).find("input")[0];
+            var temp = input.value;
+            if (!$(this).hasClass("crud")) {
+                this.innerHTML = temp;
+            }
+        });
+    });
+
 });
+
+function confirmDelete(msg, location) {
+    if (confirm(msg) == true) {
+        document.location.href = location;
+    }
+    console.log(location);
+}

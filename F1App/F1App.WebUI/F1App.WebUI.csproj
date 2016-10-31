@@ -375,17 +375,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JsonOptionsController.cs" />
     <Compile Include="Controllers\ListController.cs" />
-    <Compile Include="Controllers\PilotJsonOptionController.cs" />
-    <Compile Include="Controllers\PilotController.cs" />
-    <Compile Include="Controllers\PilotStandingController.cs" />
-    <Compile Include="Controllers\PilotStandingJsonOptionController.cs" />
-    <Compile Include="Controllers\ResultController.cs" />
-    <Compile Include="Controllers\ResultJsonOptionController.cs" />
-    <Compile Include="Controllers\TeamController.cs" />
-    <Compile Include="Controllers\TeamJsonOptionController.cs" />
-    <Compile Include="Controllers\TeamStandingController.cs" />
-    <Compile Include="Controllers\TeamStandingJsonOptionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -403,22 +394,19 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Pilot\List.cshtml" />
-    <Content Include="Views\Team\List.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Result\List.cshtml" />
-    <Content Include="Views\TeamStanding\List.cshtml" />
-    <Content Include="Views\PilotStanding\List.cshtml" />
-    <Content Include="Views\PilotJsonOption\ShowOptions.cshtml" />
-    <Content Include="Views\TeamJsonOption\ShowOptions.cshtml" />
-    <Content Include="Views\PilotStandingJsonOption\ShowOptions.cshtml" />
-    <Content Include="Views\TeamStandingJsonOption\ShowOptions.cshtml" />
-    <Content Include="Views\ResultJsonOption\ShowOptions.cshtml" />
     <Content Include="Views\List\PilotList.cshtml" />
     <Content Include="Views\List\TeamList.cshtml" />
     <Content Include="Views\List\ResultList.cshtml" />
     <Content Include="Views\List\PilotStandingList.cshtml" />
     <Content Include="Views\List\TeamStandingList.cshtml" />
+    <Content Include="Views\JsonOptions\ShowPilotOptions.cshtml" />
+    <Content Include="Views\JsonOptions\ShowTeamOptions.cshtml" />
+    <Content Include="Views\JsonOptions\ShowPilotStandingOptions.cshtml" />
+    <Content Include="Views\JsonOptions\ShowTeamStandingOptions.cshtml" />
+    <Content Include="Views\JsonOptions\ShowResultOptions.cshtml" />
+    <Content Include="Views\Admin\PilotListAdmin.cshtml" />
+    <Content Include="Views\Admin\EditPilot.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -428,7 +416,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\F1App.Domain\F1App.Domain.csproj">

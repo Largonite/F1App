@@ -21,9 +21,41 @@ namespace F1App.Domain.Concrete
             return _context.Set<TEntity>().Select(t => t); 
         }
 
+        public TEntity GetById(int id)
+        {
+            return _context.Set<TEntity>().Find(id);
+        }
+
+        public bool Update(int id,TEntity entity)
+        {
+            TEntity e = GetById(id);
+            if(e!= null)
+            {
+                foreach(var prop in entity.GetType().GetProperties())
+                {
+                    prop.SetValue(e, prop.GetValue(entity));
+                }
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
         public IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate)
         {
             return _context.Set<TEntity>().Where(predicate).Select(t => t);
+        }
+
+        public TEntity Delete(int id)
+        {
+            TEntity e =  GetById(id);
+            if (e != null)
+            {
+                TEntity res = _context.Set<TEntity>().Remove(e);
+                //_context.SaveChanges();
+                return res;
+            }
+            return null;            
         }
         
     }

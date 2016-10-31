@@ -1,0 +1,60 @@
+﻿@using F1App.Domain
+@model IQueryable<Pilot>
+
+@{
+    ViewBag.Title = "Pilots List";
+}
+
+<script>
+    $(".navbar li.active").removeClass("active");
+    $("#PilotLink").addClass("active");
+</script>
+<div id="Pilots">
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">Pilots</div>
+        <div class="panel-body">
+            @using (Html.BeginForm("EditPilot", "Admin", FormMethod.Post))
+            {
+            <table id="pilotsTable" class="table table-striped table-bordered dt" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Pilot Number</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Nationality</th>
+                        <th>Birth Date</th>
+                        <th>Abreviation</th>
+                        <th>Team (TeamId)</th>
+                        <th>Wikipedia</th>
+                        <th>Editing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model)
+                    {
+                            <tr>
+                                <td name="PilotId" isId="true">@p.PilotId</td>
+                                <td name="PilotNumber">@p.PilotNumber</td>
+                                <td name="PilotFName">@p.PilotFName</td>
+                                <td name="PilotLName">@p.PilotLName</td>
+                                <td name="PilotNationality">@p.PilotNationality</td>
+                                <td name="PilotDOB">@p.PilotDOB</td>
+                                <td name="PilotAbv">@p.PilotAbv</td>
+                                <td name="TeamId">@p.Team.TeamName (@p.Team.TeamId)</td>
+                                <td name="PilotUrl">@p.PilotUrl</td>
+                                <td class="text-center crud">
+                                    <button type="submit" class="btn btn-success btn-circle validate hidden"><i class="glyphicon glyphicon-ok"></i></button>
+                                    <button type="button" class="btn btn-danger btn-circle cancel hidden"><i class="glyphicon glyphicon-remove"></i></button>
+                                    <button type="button" class="btn btn-success btn-circle edit"><i class="glyphicon glyphicon-edit"></i></button>
+                                    <button type="button" class="btn btn-danger btn-circle remove" onclick="confirmDelete('Are you sure to delete pilot with id : '+@p.PilotId,'@Url.Action("DeletePilot", "Admin", new { pilotId = p.PilotId })')"><i class="glyphicon glyphicon-trash"></i></button>
+                                </td>
+                            </tr>
+                    }
+                </tbody>
+            </table>
+            }
+        </div>
+    </div>
+</div>

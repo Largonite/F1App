@@ -43,11 +43,6 @@ namespace F1App.WebUI.Infrastructure
 
 
             kernel.Bind(typeof(IRepository<>)).To(typeof(BaseRepository<>));
-            /*kernel.Bind<IPilotRepository>().To<PilotRepository>();
-            kernel.Bind<ITeamRepository>().To<TeamRepository>();
-            kernel.Bind<ITeamStandingRpository>().To<TeamStandingRepository>();
-            kernel.Bind<IPilotStandingRepository>().To<PilotStandingRepository>();
-            kernel.Bind<IResultRepository>().To<ResultRepository>();*/
         }
     }
 }

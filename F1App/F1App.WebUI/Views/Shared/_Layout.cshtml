@@ -9,6 +9,7 @@
         <link href="~/Content/bootstrap-theme.css" rel="stylesheet"/>
         <!--<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet"/>-->
         <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+        <link href="~/Content/Style.css" rel="stylesheet" />
     </head>
     <body>
         <div class="navbar navbar-inverse" role="navigation">
@@ -26,6 +27,14 @@
                 </ul>
             </div>
         </div>
+        @if (TempData["SuccessMessage"] != null) //check for a message in the TempData, at this point, the message should come from the edit/delete method of the AdminController
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+        @if (TempData["ErrorMessage"] != null) //check for a message in the TempData, at this point, the message should come from the edit/delete method of the AdminController
+        {
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
         <div class="container-fluid">
            @RenderBody()
         </div>

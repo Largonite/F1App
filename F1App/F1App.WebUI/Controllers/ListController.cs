@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using F1App.Domain.Abstract;
+using F1App.Domain.Concrete;
 using F1App.Domain;
 
 namespace F1App.WebUI.Controllers
@@ -12,8 +13,8 @@ namespace F1App.WebUI.Controllers
         private IRepository<TeamStanding> teamStandingRepository;
         private IRepository<PilotStanding> pilotStandingRepository;
 
-        public ListController(IRepository<Result> resultRepository, IRepository<Pilot> pilotRepository, 
-            IRepository<Team> teamRepository, IRepository<TeamStanding> teamStandingRepository, IRepository<PilotStanding> pilotStandingRepository)
+        public ListController(BaseRepository<Result> resultRepository, BaseRepository<Pilot> pilotRepository,
+            BaseRepository<Team> teamRepository, BaseRepository<TeamStanding> teamStandingRepository, BaseRepository<PilotStanding> pilotStandingRepository)
         {
             this.resultRepository = resultRepository;
             this.pilotRepository = pilotRepository;
