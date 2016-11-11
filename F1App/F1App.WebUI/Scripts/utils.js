@@ -50,6 +50,9 @@
                 this.innerHTML = '<div class="form-group"><input name="' + $(this).attr("name") + '" class="form-control" type="text" value="' + temp + '" size=' + temp.length + '></input></div>'
             }
         });
+
+        $(".edit").attr("disabled", "disabled");
+        $(".remove").attr("disabled", "disabled");
     });
 
     $(".cancel").on("click", function () {
@@ -66,11 +69,15 @@
 
         $(tr).children().each(function () {
             var input = $(this).find("input")[0];
-            var temp = input.value;
-            if (!$(this).hasClass("crud")) {
-                this.innerHTML = temp;
+            if (input) {
+                var temp = input.value;
+                if (!$(this).hasClass("crud")) {
+                    this.innerHTML = temp;
+                }
             }
         });
+        $(".edit").removeAttr("disabled");
+        $(".remove").removeAttr("disabled");
     });
 
 });

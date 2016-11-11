@@ -17,8 +17,8 @@ namespace F1App.WebUI.Controllers
         private IRepository<TeamStanding> teamStandingRepository;
         private IRepository<PilotStanding> pilotStandingRepository;
 
-        public AdminController(BaseRepository<Result> resultRepository, BaseRepository<Pilot> pilotRepository,
-            BaseRepository<Team> teamRepository, BaseRepository<TeamStanding> teamStandingRepository, BaseRepository<PilotStanding> pilotStandingRepository)
+        public AdminController(IRepository<Result> resultRepository, IRepository<Pilot> pilotRepository,
+            IRepository<Team> teamRepository, IRepository<TeamStanding> teamStandingRepository, IRepository<PilotStanding> pilotStandingRepository)
         {
             this.resultRepository = resultRepository;
             this.pilotRepository = pilotRepository;
@@ -65,10 +65,16 @@ namespace F1App.WebUI.Controllers
                 {
                     TempData["SuccessMessage"] = string.Format("{0} {1} has been saved", pilot.PilotFName, pilot.PilotLName);
                 }
-
-            }else
+            }
+            else
             {
-                TempData["ErrorMessage"] = "Impossible to update the pilot!";
+                var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0).ToList();
+                string err = "";
+                foreach(var e in errors)
+                {
+                    err += e[0].ErrorMessage + "\n";
+                }
+                TempData["ErrorMessage"] = "Impossible to update the pilot! "+err;
             }
             return RedirectToAction("PilotListAdmin");
         }

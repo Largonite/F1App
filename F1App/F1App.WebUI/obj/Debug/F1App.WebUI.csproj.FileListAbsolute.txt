@@ -142,3 +142,13 @@ C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\obj\Debug\F1App.WebUI.dll
 C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\obj\Debug\F1App.WebUI.pdb
 C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\bin\EntityFramework.SqlServer.dll
 C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\bin\EntityFramework.SqlServer.xml
+C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\bin\Newtonsoft.Json.dll
+C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\bin\Newtonsoft.Json.xml
+C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\bin\System.Net.Http.Formatting.dll
+C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\bin\System.Web.Http.Common.dll
+C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\bin\System.Web.Http.dll
+C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\bin\System.Web.Http.WebHost.dll
+C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\bin\System.Net.Http.Formatting.xml
+C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\bin\System.Web.Http.xml
+C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\bin\System.Web.Http.Common.xml
+C:\Users\Romain\Source\Repos\F1App\F1App\F1App.WebUI\bin\System.Web.Http.WebHost.xml
