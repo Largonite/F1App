@@ -62,3 +62,5 @@ C:\Users\Romain\Source\Repos\F1App\F1App\F1App.Domain\bin\Debug\System.Web.WebPa
 C:\Users\Romain\Source\Repos\F1App\F1App\F1App.Domain\obj\Debug\F1App.Domain.csprojResolveAssemblyReference.cache
 C:\Users\Romain\Source\Repos\F1App\F1App\F1App.Domain\obj\Debug\F1App.Domain.dll
 C:\Users\Romain\Source\Repos\F1App\F1App\F1App.Domain\obj\Debug\F1App.Domain.pdb
+C:\Users\Romain\Source\Repos\F1App\F1App\F1App.Domain\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Romain\Source\Repos\F1App\F1App\F1App.Domain\bin\Debug\Newtonsoft.Json.xml

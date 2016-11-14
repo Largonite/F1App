@@ -6,7 +6,7 @@
                 Json Options
             </div>
             <div class="panel-body">
-                @using (Html.BeginForm("GenerateJson", "List", FormMethod.Get, new { target = "_balnk" }))
+                @using (Html.BeginForm("pilot","api",FormMethod.Get, new { target = "_blank" }))
                 {
                     <div class="form-inline">
                         <div class="form-group col-xs-3">
@@ -70,7 +70,13 @@
                                 Pilot Team
                             </label>
                             <div class="col-xs-6">
-                                @Html.DropDownListFor(m => m.PilotsTeam, new SelectList(Model.PilotsTeam), "All", new { @id = "pilotTeamDd", @class = "Dd form-control", @column = 7, @withId = true })
+                                <select id = "pilotTeamDd" class = "Dd form-control" column =7 withId = true name="PilotsTeam"> 
+                                    <option value="">All</option>
+                                    @for(int i = 0; i < Model.PilotsTeam.Count(); i++)
+                                    {
+                                    <option value=@Model.PilotsTeamId.ElementAt(i)>@Model.PilotsTeam.ElementAt(i)</option>
+                                    }
+                                </select>
                             </div>
                         </div>
                         <div class="form-group col-xs-3">

@@ -6,12 +6,7 @@
         });
     });
 
-    $('.Dd').append($('<option>', {
-        value: "None",
-        text: 'None'
-    }));
-
-    $(".Dd").on("change", function () {
+    /*$(".Dd").on("change", function () {
         var column = dt.column($(this).attr('column'));
         if (this.value === "None") {
             column.visible(false);
@@ -28,7 +23,7 @@
             column.visible(true);
             dt.column($(this).attr("column")).search('').draw();
         }
-    });
+    });*/
 
     $(".Dd").css("width", "100%");
 
@@ -42,7 +37,6 @@
                 $(this).addClass("hidden");
             }
         })
-
 
         $(tr).children().each(function () {
             var temp = this.innerHTML;
@@ -80,11 +74,35 @@
         $(".remove").removeAttr("disabled");
     });
 
+    $("#submitButton").on("click", function () {
+        editPilot($(this));
+    });
+
 });
 
 function confirmDelete(msg, location) {
-    if (confirm(msg) == true) {
+    if (confirm(msg) === true) {
         document.location.href = location;
     }
-    console.log(location);
+}
+
+function editPilot(button) {
+    var tr = button.closest("tr");
+    var data = {};
+
+    $(tr).find("input").each(function () {
+        data[$(this).attr("name")] = $(this).val();
+    });
+
+    var jsonData = JSON.stringify(data);
+    console.log(jsonData);
+    $.ajax({
+        type: "POST",
+        url: "EditPilot",
+        contentType: "json",
+        data: jsonData,
+        error: function (e) {
+            console.log("error edit pilot : " + e);
+        }
+    });
 }
