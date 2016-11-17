@@ -11,7 +11,8 @@ namespace F1App.Domain
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Team
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +22,15 @@ namespace F1App.Domain
             this.TeamStandings = new HashSet<TeamStanding>();
         }
     
+
         public int TeamId { get; set; }
+        [Required(ErrorMessage = "Enter Team Name")]
+        [Display(Name = "Name")]
         public string TeamName { get; set; }
+        [Required(ErrorMessage = "Enter team Nationality")]
+        [Display(Name = "Nationality")]
         public string TeamNationality { get; set; }
+        [Display(Name = "Url")]
         public string TeamUrl { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

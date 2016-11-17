@@ -11,9 +11,10 @@ namespace F1App.Domain
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
-    
+
     public partial class Pilot
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,22 +26,29 @@ namespace F1App.Domain
     
         public int PilotId { get; set; }
         [Required (ErrorMessage ="Enter pilot first name")]
+        [Display(Name ="First Name")]
         public string PilotFName { get; set; }
         [Required(ErrorMessage = "Enter pilot last name")]
+        [Display(Name ="Last Name")]
         public string PilotLName { get; set; }
         [Required(ErrorMessage = "Enter pilot number")]
         [Range(0, int.MaxValue, ErrorMessage = "{0} must be a integer")]
+        [Display(Name ="Number")]
         public int PilotNumber { get; set; }
         [Required(ErrorMessage = "Enter pilot abreviation")]
+        [Display(Name ="Abreviation")]
         public string PilotAbv { get; set; }
         [Required(ErrorMessage = "Enter pilot nationality")]
+        [Display(Name ="Nationality")]
         public string PilotNationality { get; set; }
-        [Required(ErrorMessage = "Enter pilot url")]
+        [Display(Name ="Url")]
         public string PilotUrl { get; set; }
         [Required(ErrorMessage = "Enter pilot date of birth")]
+        [Display(Name ="Date of Birth")]
         public string PilotDOB { get; set; }
         [Required(ErrorMessage = "Enter pilot team's id")]
         [Range(0, int.MaxValue, ErrorMessage = "{0} must be a integer")]
+        [Display(Name ="Team ID")]
         public int TeamId { get; set; }
     
         public virtual Team Team { get; set; }

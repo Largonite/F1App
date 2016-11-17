@@ -1,4 +1,5 @@
 ﻿@using F1App.Domain
+@using System.ComponentModel.DataAnnotations
 @model IQueryable<Pilot>
 
 @{
@@ -23,11 +24,21 @@
                 {
                     foreach (var property in Model.First().GetType().GetProperties())
                     {
+                        var displayName = "";
+                        if (property.GetCustomAttributes(typeof(DisplayAttribute), true).Count() != 0)
+                        {
+                            displayName = property.GetCustomAttributes(typeof(DisplayAttribute), true).Cast<DisplayAttribute>().Single().Name;
+                        }
                         if (property.Name != "PilotId" && property.Name !="PilotStandings" && property.Name!="Team" && property.Name!="Results")
                         {
                             <div class="form-group col-lg-6">
-                                <label>@property.Name</label>
-                                @Html.TextBox(property.Name, null, new { @class="form-control"})
+                                <label>@(displayName != "" ? displayName : property.Name)</label>
+                                @if(property.Name == "PilotDOB"){
+                                   @Html.TextBox(property.Name, null, new { @class = "form-control",placeholder="YYYY-mm-dd" })
+                                }else
+                                {
+                                   @Html.TextBox(property.Name, null, new { @class = "form-control"})
+                                }
                             </div>
                         }
                     }

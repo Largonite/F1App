@@ -23,16 +23,20 @@ namespace F1App.WebUI.Controllers
             this.pilotStandingRepository = pilotStandingRepository;
         }
 
+        /**
+         * 
+         * LIST VIEWS
+         * 
+         */
+
         public ViewResult PilotListAdmin()
         {
             return View(pilotRepository.All());
         }
-        
         public ViewResult TeamListAdmin()
         {
             return View(teamRepository.All());
         }
-
         public ViewResult ResultListAdmin()
         {
             return View(resultRepository.All());
