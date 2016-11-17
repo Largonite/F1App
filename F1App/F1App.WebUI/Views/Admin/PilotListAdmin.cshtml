@@ -65,8 +65,8 @@
                                 <td name="PilotAbv">@p.PilotAbv</td>
                                 <td name="TeamId">@p.Team.TeamName (@p.Team.TeamId)</td>
                                 <td name="PilotUrl">@p.PilotUrl</td>
-                                <td class="text-center crud">
-                                    <button type="button" class="submitButton btn btn-success btn-circle validate hidden"><i class="glyphicon glyphicon-ok"></i></button>
+                                <td class="text-center noInput">
+                                    <button type="button" class="submitButton btn btn-success btn-circle validate hidden" submitUrl="SavePilot"><i class="glyphicon glyphicon-ok"></i></button>
                                     <button type="button" class="btn btn-danger btn-circle cancel hidden"><i class="glyphicon glyphicon-remove"></i></button>
                                     <button type="button" class="btn btn-success btn-circle edit"><i class="glyphicon glyphicon-edit"></i></button>
                                     <button type="button" class="btn btn-danger btn-circle remove" onclick="confirmDelete('Are you sure to delete pilot with id : '+@p.PilotId,'@Url.Action("DeletePilot", "Admin", new { pilotId = p.PilotId })')"><i class="glyphicon glyphicon-trash"></i></button>

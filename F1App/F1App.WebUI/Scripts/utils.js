@@ -36,7 +36,7 @@
 
         $(tr).children().each(function () {
             var temp = this.innerHTML;
-            if (!$(this).hasClass("crud")) {
+            if (!$(this).hasClass("noInput")) {
                 if ($(this).attr("isid") == "true") {
                     this.innerHTML = '<input name="' + $(this).attr("name") + '" class="form-control" type="hidden" value="' + temp + '" size=' + temp.length + '>' + temp + '</input>'
                 } else {
@@ -65,7 +65,7 @@
             var input = $(this).find("input")[0];
             if (input) {
                 var temp = input.value;
-                if (!$(this).hasClass("crud")) {
+                if (!$(this).hasClass("noInput")) {
                     this.innerHTML = temp;
                 }
             }
@@ -89,16 +89,16 @@ function confirmDelete(msg, location) {
 function editPilot(button) {
     var tr = button.closest("tr");
     var data = {};
-    console.log("click");
     $(tr).find("input").each(function () {
         data[$(this).attr("name")] = $(this).val();
     });
 
-    var jsonData = JSON.stringify(data);
-    console.log(data);
+    var url = button.attr("submitUrl");
+    console.log(url);
+
     $.ajax({
         type: "POST",
-        url: "SavePilot",
+        url: url,
         dataType: "html",
         data: data,
         success:function(e){

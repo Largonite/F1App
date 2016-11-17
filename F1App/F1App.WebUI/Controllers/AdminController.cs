@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using F1App.Domain;
 using F1App.Domain.Abstract;
-using F1App.Domain.Concrete;
-using System.Diagnostics;
-using F1App.WebUI.Models;
 
 namespace F1App.WebUI.Controllers
 {
@@ -52,47 +46,23 @@ namespace F1App.WebUI.Controllers
             return View(teamStandingRepository.All());
         }
 
+        /**
+         * 
+         * PILOT ACTIONS
+         * 
+         */
+
         [HttpPost]
         public string SavePilot(Pilot pilot)
         {
-            if (ModelState.IsValid)
-            {
-                if (pilotRepository.Save(pilot.PilotId, pilot))
-                {
-                    TempData["SuccessMessage"] = string.Format("{0} {1} has been saved", pilot.PilotFName, pilot.PilotLName);
-                }
-            }
-            else
-            {
-                var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0).ToList();
-                string err = "";
-                foreach(var e in errors)
-                {
-                    err += e[0].ErrorMessage + "\n";
-                }
-                TempData["ErrorMessage"] = "Impossible to update the pilot! "+err;
-            }
+            Save(pilotRepository, pilot.PilotId,pilot, string.Format("{0} {1} has been saved", pilot.PilotFName, pilot.PilotLName), "Impossible to update the pilot! ");
             return "PilotListAdmin";
         }
+
+        [HttpPost]
         public ActionResult AddPilot(Pilot pilot)
         {
-            if (ModelState.IsValid)
-            {
-                if (pilotRepository.Save(pilot.PilotId, pilot))
-                {
-                    TempData["SuccessMessage"] = string.Format("{0} {1} has been saved", pilot.PilotFName, pilot.PilotLName);
-                }
-            }
-            else
-            {
-                var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0).ToList();
-                string err = "";
-                foreach (var e in errors)
-                {
-                    err += e[0].ErrorMessage + "\n";
-                }
-                TempData["ErrorMessage"] = "Impossible to update the pilot! " + err;
-            }
+            Save(pilotRepository, pilot.PilotId, pilot, string.Format("{0} {1} has been saved", pilot.PilotFName, pilot.PilotLName), "Impossible to update the pilot! ");
             return RedirectToAction("PilotListAdmin");
         }
 
@@ -109,6 +79,62 @@ namespace F1App.WebUI.Controllers
                 TempData["ErrorMessage"] = "Impossible to delete the pilot!";
             }
             return RedirectToAction("PilotListAdmin");
+        }
+
+        /**
+         * 
+         * TEAM ACTIONS
+         * 
+         */
+
+        [HttpPost]
+        public string SaveTeam(Team team)
+        {
+            Save(teamRepository, team.TeamId, team, string.Format("Team {0} has been saved", team.TeamName), "Impossible to update the Team");
+            return "TeamListAdmin";
+        }
+
+        [HttpPost]
+        public ActionResult AddTeam(Team team)
+        {
+            Save(teamRepository, team.TeamId, team, string.Format("Team {0} has been saved", team.TeamName), "Impossible to update the Team");
+            return new RedirectResult("TeamListAdmin");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteTeam(int teamId)
+        {
+            Team t = teamRepository.Delete(teamId);
+            if (t != null)
+            {
+                TempData["SuccessMessage"] = string.Format("{0} has been deleted", t.TeamName);
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Impossible to delete the team! Check the Teams_pilot FK";
+            }
+            return RedirectToAction("TeamListAdmin");
+        }
+
+        private void Save<T>(IRepository<T> repository,int id, T o,string successMsg, string errorMsg)
+        {
+            if (ModelState.IsValid)
+            {
+                if (repository.Save(id, o))
+                {
+                    TempData["SuccessMessage"] = successMsg;//string.Format("{0} {1} has been saved", pilot.PilotFName, pilot.PilotLName);
+                }
+            }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0).ToList();
+                string err = "";
+                foreach (var e in errors)
+                {
+                    err += e[0].ErrorMessage + "\n";
+                }
+                TempData["ErrorMessage"] = errorMsg + err;//"Impossible to update the pilot! " + err;
+            }
         }
     }
 }

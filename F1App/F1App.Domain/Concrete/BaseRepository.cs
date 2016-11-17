@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using F1App.Domain.Abstract;
+using System.Diagnostics;
 
 namespace F1App.Domain.Concrete
 {
@@ -64,7 +62,14 @@ namespace F1App.Domain.Concrete
             if (e != null)
             {
                 TEntity res = _context.Set<TEntity>().Remove(e);
-                _context.SaveChanges();
+                try
+                {
+                    _context.SaveChanges();
+                }catch(Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                    return null;
+                }             
                 return res;
             }
             return null;            
