@@ -26,15 +26,27 @@ namespace F1App.Domain.Concrete
             return _context.Set<TEntity>().Find(id);
         }
 
-        public bool Update(int id,TEntity entity)
+        public bool Save(int id,TEntity entity)
         {
-            TEntity e = GetById(id);
-            if(e!= null)
+            TEntity e;
+            if (id == 0)
             {
-                foreach(var prop in entity.GetType().GetProperties())
+                e = _context.Set<TEntity>().Add(entity);
+
+            }else
+            {
+                e = GetById(id);
+                if (e != null)
                 {
-                    prop.SetValue(e, prop.GetValue(entity));
+                    foreach (var prop in entity.GetType().GetProperties())
+                    {
+                        prop.SetValue(e, prop.GetValue(entity));
+                    }
                 }
+            }
+            
+            if (e != null)
+            {
                 _context.SaveChanges();
                 return true;
             }
@@ -52,11 +64,10 @@ namespace F1App.Domain.Concrete
             if (e != null)
             {
                 TEntity res = _context.Set<TEntity>().Remove(e);
-                //_context.SaveChanges();
+                _context.SaveChanges();
                 return res;
             }
             return null;            
         }
-        
     }
 }

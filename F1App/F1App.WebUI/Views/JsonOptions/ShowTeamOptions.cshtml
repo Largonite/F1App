@@ -6,36 +6,39 @@
                 Json Options
             </div>
             <div class="panel-body">
-                <div class="form-inline">
-                    <div class="form-group col-xs-3">
-                        <label class="control-label col-xs-6" for="teamIdDd">Team Id</label>
-                        <div class="col-xs-6">
-                            @Html.DropDownListFor(m => m.TeamsId, new SelectList(Model.TeamsId), "All", new { @id = "teamIdDd", @class = "Dd form-control", @column = 0, @withId = false })
+                @using (Html.BeginForm("team", "api", FormMethod.Get, new { target = "_blank" }))
+                {
+                    <div class="form-inline">
+                        <div class="form-group col-xs-3">
+                            <label class="control-label col-xs-6" for="teamIdDd">Team Id</label>
+                            <div class="col-xs-6">
+                                @Html.DropDownListFor(m => m.TeamsId, new SelectList(Model.TeamsId), "All", new { @id = "teamIdDd", @class = "Dd form-control", @column = 0, @withId = false })
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label col-xs-6" for="teamNameDd">Team Name</label>
+                            <div class="col-xs-6">
+                                @Html.DropDownListFor(m => m.TeamsName, new SelectList(Model.TeamsName), "All", new { @id = "teamNameDd", @class = "Dd form-control", @column = 1, @withId = false })
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label col-xs-6" for="teamNatDd">Team Nationality</label>
+                            <div class="col-xs-6">
+                                @Html.DropDownListFor(m => m.TeamsNationality, new SelectList(Model.TeamsNationality), "All", new { @id = "teamNatDd", @class = "Dd form-control", @column = 2, @withId = false })
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <label class="control-label col-xs-6" for="teamUrlDd">
+                                Team Url
+                            </label>
+                            <div class="col-xs-6">
+                                <select id="teamUrlId" class="Dd form-control" column="3" withid="false">
+                                    <option value="">All</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group col-xs-3">
-                        <label class="control-label col-xs-6" for="teamNameDd">Team Name</label>
-                        <div class="col-xs-6">
-                            @Html.DropDownListFor(m => m.TeamsName, new SelectList(Model.TeamsName), "All", new { @id = "teamNameDd", @class = "Dd form-control", @column = 1, @withId = false })
-                        </div>
-                    </div>
-                    <div class="form-group col-xs-3">
-                        <label class="control-label col-xs-6" for="teamNatDd">Team Nationality</label>
-                        <div class="col-xs-6">
-                            @Html.DropDownListFor(m => m.TeamsNationality, new SelectList(Model.TeamsNationality), "All", new { @id = "teamNatDd", @class = "Dd form-control", @column = 2, @withId = false })
-                        </div>
-                    </div>
-                    <div class="form-group col-xs-3">
-                        <label class="control-label col-xs-6" for="teamUrlDd">
-                            Team Url
-                        </label>
-                        <div class="col-xs-6">
-                            <select id="teamUrlId" class="Dd form-control" column="3" withid="false">
-                                <option value="">All</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>

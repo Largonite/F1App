@@ -33,13 +33,7 @@ namespace F1App.WebUI.Controllers
         {
             return View(pilotRepository.All());
         }
-
-        /*public ViewResult EditPilot(int pilotId)
-        {
-            Pilot pilot = pilotRepository.GetById(pilotId);
-            return View(pilot);
-        }*/
-
+        
         public ViewResult TeamListAdmin()
         {
             return View(teamRepository.All());
@@ -59,11 +53,11 @@ namespace F1App.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditPilot(Pilot pilot)
+        public string SavePilot(Pilot pilot)
         {
             if (ModelState.IsValid)
             {
-                if (pilotRepository.Update(pilot.PilotId, pilot))
+                if (pilotRepository.Save(pilot.PilotId, pilot))
                 {
                     TempData["SuccessMessage"] = string.Format("{0} {1} has been saved", pilot.PilotFName, pilot.PilotLName);
                 }
@@ -77,6 +71,27 @@ namespace F1App.WebUI.Controllers
                     err += e[0].ErrorMessage + "\n";
                 }
                 TempData["ErrorMessage"] = "Impossible to update the pilot! "+err;
+            }
+            return "PilotListAdmin";
+        }
+        public ActionResult AddPilot(Pilot pilot)
+        {
+            if (ModelState.IsValid)
+            {
+                if (pilotRepository.Save(pilot.PilotId, pilot))
+                {
+                    TempData["SuccessMessage"] = string.Format("{0} {1} has been saved", pilot.PilotFName, pilot.PilotLName);
+                }
+            }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0).ToList();
+                string err = "";
+                foreach (var e in errors)
+                {
+                    err += e[0].ErrorMessage + "\n";
+                }
+                TempData["ErrorMessage"] = "Impossible to update the pilot! " + err;
             }
             return RedirectToAction("PilotListAdmin");
         }

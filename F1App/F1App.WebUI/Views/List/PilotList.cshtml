@@ -36,7 +36,7 @@
                     @foreach (var p in Model)
                     {
                         <tr>
-                            <td>@p.PilotId</td>
+                            <td isId=true>@p.PilotId</td>
                             <td>@p.PilotNumber</td>
                             <td>@p.PilotFName</td>
                             <td>@p.PilotLName</td>
@@ -44,7 +44,7 @@
                             <td>@p.PilotDOB</td>
                             <td>@p.PilotAbv</td>
                             <td>@p.Team.TeamName (@p.Team.TeamId)</td>
-                            <td>@p.PilotUrl</td>
+                            <td><a href=@p.PilotUrl>@p.PilotUrl</a></td>
                         </tr>
                     }
                 </tbody>

@@ -679,6 +679,7 @@
     <Content Include="Views\JsonOptions\ShowResultOptions.cshtml" />
     <Content Include="Views\Admin\PilotListAdmin.cshtml" />
     <Content Include="Views\Admin\EditPilot.cshtml" />
+    <Content Include="Views\Admin\TeamListAdmin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
