@@ -5,18 +5,18 @@
            "scrollX" : true
         });
     });
-
+    
     $(".Dd").on("change", function () {
-        var column = dt.column($(this).attr('column'));
         if (this.value !== "") {
-            column.visible(true);
             if ($(this).attr("withid") === "True") {
                 dt.column($(this).attr("column")).search(this.value, true, false).draw();
+            } else if ($(this).attr("fk") === "True") {
+                console.log("(" + this.value + ")");
+                dt.column($(this).attr("column")).search('.*(\('+this.value+"\))+.*", true, false).draw();
             } else {
-                dt.column($(this).attr("column")).search('^' + this.value + '$', true, false).draw();
+                dt.column($(this).attr("column")).search('^' + this.value , true, false).draw();
             }
         } else {
-            column.visible(true);
             dt.column($(this).attr("column")).search('').draw();
         }
     });

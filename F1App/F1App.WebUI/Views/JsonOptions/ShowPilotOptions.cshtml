@@ -22,7 +22,7 @@
                                 Pilot Number
                             </label>
                             <div class="col-xs-6">
-                                @Html.DropDownListFor(m => m.PilotsNb, new SelectList(Model.PilotsNb), "All", new { @id = "pilotNbDd", @class = "Dd form-control", @column = 1, @withId = false })
+                                @Html.DropDownListFor(m => m.PilotsNb, new SelectList(Model.PilotsNb), "All", new { @id = "pilotNbDd", @class = "Dd form-control", @column = 1, @withId = true })
                             </div>
                         </div>
                         <div class="form-group col-xs-3">
@@ -70,17 +70,17 @@
                                 Pilot Team
                             </label>
                             <div class="col-xs-6">
-                                <select id = "pilotTeamDd" class = "Dd form-control" column =7 withId = true name="PilotsTeam"> 
+                                <select id = "pilotTeamDd" fk="True" class = "Dd form-control" column =7 withId = false name="PilotsTeam"> 
                                     <option value="">All</option>
-                                    @for(int i = 0; i < Model.PilotsTeam.Count(); i++)
+                                    @foreach(var t in Model.PilotsTeam)
                                     {
-                                    <option value=@Model.PilotsTeamId.ElementAt(i)>@Model.PilotsTeam.ElementAt(i)</option>
+                                    <option value=@t.Id>@t.Name</option>
                                     }
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-12 text-center" style="margin-top:5px">
+                    <div class="col-lg-12 text-center" style="margin-top:10px">
                         <button type="submit" class="btn btn-success" value="Generate json url">Generate json url</button>
                     </div>
                 }

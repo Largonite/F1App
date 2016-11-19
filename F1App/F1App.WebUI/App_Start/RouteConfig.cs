@@ -9,7 +9,7 @@ namespace F1App.WebUI
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(null,"{controller}/{action}", new { controller = "Home", action = "Index" });
-            routes.MapRoute(null, "", new { controller = "Home", action = "Index" });            
+            routes.MapRoute(null, "", new { controller = "Home", action = "Index" });        
         }
     } 
 }

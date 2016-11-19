@@ -36,9 +36,8 @@ namespace F1App.WebUI.Controllers
                 PilotsNationality = pilotRepository.All().OrderBy(p => p.PilotNationality).Select(p => p.PilotNationality).Distinct(),
                 PilotsDOB = pilotRepository.All().OrderBy(p => p.PilotDOB).Select(p => p.PilotDOB).Distinct(),
                 PilotsAbv = pilotRepository.All().OrderBy(p => p.PilotAbv).Select(p => p.PilotAbv),
-                PilotsTeam = pilotRepository.All().OrderBy(p => p.Team.TeamName).Select(p => p.Team.TeamName).Distinct(),
+                PilotsTeam = pilotRepository.All().OrderBy(p => p.Team.TeamId).Select(p => new TeamOptionModel { Id = p.Team.TeamId, Name = p.Team.TeamName}).Distinct(),
                 PilotsUrl = pilotRepository.All().OrderBy(p => p.PilotId).Select(p => p.PilotUrl),
-                PilotsTeamId = pilotRepository.All().OrderBy(p=>p.PilotId).Select(p=>p.Team.TeamId)
             };
             return PartialView(model);
         }

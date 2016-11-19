@@ -107,5 +107,45 @@ namespace F1App.WebUI.Controllers
 
             Response.Write(JsonConvert.SerializeObject(o, Formatting.Indented));
         }
+
+        public void Team()
+        {
+            string id = Request.QueryString["TeamsId"];
+            string name = Request.QueryString["TeamsName"];
+            string nat = Request.QueryString["TeamsNationality"];
+
+            var res = teamRepository.All();
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                var teamId = Convert.ToInt32(id);
+                res = res.Where(t => t.TeamId == teamId);
+            }
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                res = res.Where(t => t.TeamName == name);
+            }
+            if (!string.IsNullOrEmpty(nat))
+            {
+                res = res.Where(t => t.TeamNationality == nat);
+            }
+
+
+            var result = res.OrderBy(t => t.TeamId).Select(t => new
+            {
+                id = t.TeamId,
+                name = t.TeamName,
+                nationality = t.TeamNationality,
+                url = t.TeamUrl,
+                pilots = t.Pilots.Select(p=>new {id = p.PilotId,lastName = p.PilotLName,firstName = p.PilotFName })
+            });
+            
+
+            Response.ContentType = "application/json; charset=utf-8";
+            Response.AddHeader("Content-Disposition", "inline;filename=\"team.json\"");
+
+            var o = new { data = new { list = result } };
+
+            Response.Write(JsonConvert.SerializeObject(o, Formatting.Indented));
+        }
     }
 }

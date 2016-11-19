@@ -14,8 +14,13 @@ namespace F1App.WebUI.Models
         public IEnumerable<string> PilotsNationality { get; set; }
         public IEnumerable<string> PilotsDOB { get; set; }
         public IEnumerable<string> PilotsAbv { get; set; }
-        public IEnumerable<string> PilotsTeam { get; set; }
-        public IEnumerable<int> PilotsTeamId { get; set; }
+        public IEnumerable<TeamOptionModel> PilotsTeam { get; set; }
         public IEnumerable<string> PilotsUrl { get; set; }
+    }
+
+    public class TeamOptionModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }
